@@ -1,0 +1,34 @@
+/**
+ * Design System - Spacing Tokens
+ * 
+ * Sistema de espaçamento baseado em múltiplos de 8px.
+ * Base: 16px = 1rem
+ */
+
+:root {
+  /* ========================================
+     ESPAÇAMENTO
+     Sistema de 8px para consistência visual
+     ======================================== */
+  
+  /* 8px - Espaçamento extra pequeno */
+  --spacing-8: 0.5rem;
+  
+  /* 16px - Espaçamento pequeno */
+  --spacing-16: 1rem;
+  
+  /* 24px - Espaçamento médio */
+  --spacing-24: 1.5rem;
+  
+  /* 32px - Espaçamento grande */
+  --spacing-32: 2rem;
+  
+  /* 40px - Espaçamento extra grande */
+  --spacing-40: 2.5rem;
+  
+  /* 56px - Espaçamento muito grande */
+  --spacing-56: 3.5rem;
+  
+  /* 72px - Espaçamento máximo */
+  --spacing-72: 4.5rem;
+}

@@ -1,0 +1,66 @@
+{
+  "name": "@embracon/design-system",
+  "version": "1.0.0",
+  "description": "Embracon Design System - Biblioteca de componentes Vue 3 com TypeScript",
+  "type": "module",
+  "main": "./dist/embracon-design-system.umd.js",
+  "module": "./dist/embracon-design-system.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/embracon-design-system.es.js",
+      "require": "./dist/embracon-design-system.umd.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./style.css": "./dist/style.css"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "keywords": [
+    "vue",
+    "vue3",
+    "design-system",
+    "component-library",
+    "embracon",
+    "typescript",
+    "ui-components"
+  ],
+  "author": "Embracon",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/embracon/design-system"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "type-check": "vue-tsc --noEmit",
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "peerDependencies": {
+    "vue": "^3.4.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.0",
+    "typescript": "^5.3.0",
+    "vite": "^5.0.0",
+    "vite-plugin-dts": "^3.9.1",
+    "vue": "^3.5.29",
+    "vue-tsc": "^2.2.12",
+    "storybook": "^10.2.13",
+    "@storybook/vue3-vite": "^10.2.13",
+    "@chromatic-com/storybook": "^5.0.1",
+    "@storybook/addon-vitest": "^10.2.13",
+    "@storybook/addon-a11y": "^10.2.13",
+    "@storybook/addon-docs": "^10.2.13",
+    "@storybook/addon-onboarding": "^10.2.13",
+    "vitest": "^4.0.18",
+    "playwright": "^1.58.2",
+    "@vitest/browser-playwright": "^4.0.18",
+    "@vitest/coverage-v8": "^4.0.18"
+  }
+}

@@ -1,0 +1,32 @@
+/**
+ * Design System - Z-Index Tokens
+ * 
+ * Tokens de z-index para controle de camadas e sobreposição.
+ */
+
+:root {
+  /* ========================================
+     Z-INDEX
+     ======================================== */
+  
+  /* Dropdown - 1000 */
+  --z-index-dropdown: 1000;
+  
+  /* Sticky - 1020 */
+  --z-index-sticky: 1020;
+  
+  /* Fixed - 1030 */
+  --z-index-fixed: 1030;
+  
+  /* Modal Backdrop - 1040 */
+  --z-index-modal-backdrop: 1040;
+  
+  /* Modal - 1050 */
+  --z-index-modal: 1050;
+  
+  /* Popover - 1060 */
+  --z-index-popover: 1060;
+  
+  /* Tooltip - 1070 */
+  --z-index-tooltip: 1070;
+}

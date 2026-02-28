@@ -1,0 +1,12 @@
+{
+  "border-radius": {
+    "sm": {
+      "value": "0.3125rem",
+      "comment": "5px - Border radius pequeno para elementos compactos como botões, inputs e chips"
+    },
+    "lg": {
+      "value": "1rem",
+      "comment": "16px - Border radius grande para cards, modais e containers"
+    }
+  }
+}

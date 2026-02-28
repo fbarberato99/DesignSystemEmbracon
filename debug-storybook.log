@@ -1,0 +1,191 @@
+[14:17:59.346] [INFO] [36mInitializing Storybook[39m
+[14:18:00.226] [DEBUG] Getting package.json info for C:/Users/Pichau/Downloads/Demo/package.json...
+[14:18:00.227] [DEBUG] Getting CLI versions from NPM for storybook...
+[14:18:00.227] [DEBUG] Executing command: npm info storybook version
+[14:18:01.913] [INFO] Adding Storybook version 10.2.13 to your project
+[14:18:01.916] [DEBUG] Project type detected: vue3
+[14:18:12.538] [PROMPT] We found a .storybook config directory in your project.
+We assume that Storybook is already instantiated for your project. Do you still want to continue and force the initialization? {"choice":true}
+[14:18:12.539] [DEBUG] Using cached package.json for C:\Users\Pichau\Downloads\Demo\package.json...
+[14:18:12.543] [DEBUG] Using cached package.json for C:\Users\Pichau\Downloads\Demo\package.json...
+[14:18:12.543] [INFO] Framework detected: vue3-vite
+[14:18:12.544] [DEBUG] Getting installed version for vitest...
+[14:18:12.545] [DEBUG] Executing command: npm ls --json --depth=99 2>NUL
+[14:18:13.799] [DEBUG] Executing command: npm ls --json --depth=0 2>NUL
+[14:18:14.909] [DEBUG] Error finding installations for vitest: ExecaError: Command failed with exit code 1: npm.cmd ls --json "--depth=0" "2>NUL"
+
+npm error code EINVALIDTAGNAME
+npm error Invalid tag name "2>NUL" of package "2>NUL": Tags may not have any characters that encodeURIComponent encodes.
+npm error A complete log of this run can be found in: C:\Users\Pichau\AppData\Local\npm-cache\_logs\2026-02-28T17_18_14_139Z-debug-0.log
+
+{
+  "error": {
+    "code": "EINVALIDTAGNAME",
+    "summary": "Invalid tag name \"2>NUL\" of package \"2>NUL\": Tags may not have any characters that encodeURIComponent encodes.",
+    "detail": ""
+  }
+}
+[14:18:14.909] [DEBUG] No installations found for vitest
+[14:18:14.909] [DEBUG] Getting installed version for msw...
+[14:18:14.909] [DEBUG] Executing command: npm ls --json --depth=99 2>NUL
+[14:18:16.029] [DEBUG] Executing command: npm ls --json --depth=0 2>NUL
+[14:18:17.137] [DEBUG] Error finding installations for msw: ExecaError: Command failed with exit code 1: npm.cmd ls --json "--depth=0" "2>NUL"
+
+npm error code EINVALIDTAGNAME
+npm error Invalid tag name "2>NUL" of package "2>NUL": Tags may not have any characters that encodeURIComponent encodes.
+npm error A complete log of this run can be found in: C:\Users\Pichau\AppData\Local\npm-cache\_logs\2026-02-28T17_18_16_351Z-debug-0.log
+
+{
+  "error": {
+    "code": "EINVALIDTAGNAME",
+    "summary": "Invalid tag name \"2>NUL\" of package \"2>NUL\": Tags may not have any characters that encodeURIComponent encodes.",
+    "detail": ""
+  }
+}
+[14:18:17.137] [DEBUG] No installations found for msw
+[14:18:21.557] [PROMPT] What configuration should we install? {"choice":"recommended"}
+[14:18:22.507] [INFO] base-generator-task-start: Generating Storybook configuration
+[14:18:22.508] [DEBUG] Using cached package.json for C:\Users\Pichau\Downloads\Demo\package.json...
+[14:18:22.508] [DEBUG] Using cached package.json for C:\Users\Pichau\Downloads\Demo\package.json...
+[14:18:22.508] [DEBUG] Using cached package.json for C:\Users\Pichau\Downloads\Demo\package.json...
+[14:18:22.511] [INFO] base-generator-task: - Configuring main.ts
+[14:18:22.514] [INFO] base-generator-task: - Configuring preview.ts
+[14:18:22.516] [INFO] base-generator-task: - Adding Storybook command to package.json
+[14:18:22.519] [DEBUG] Getting package.json info for C:/Users/Pichau/Downloads/Demo/package.json...
+[14:18:22.519] [DEBUG] Using cached package.json for C:\Users\Pichau\Downloads\Demo\package.json...
+[14:18:22.520] [DEBUG] Using cached package.json for C:\Users\Pichau\Downloads\Demo\package.json...
+[14:18:22.522] [INFO] base-generator-task: - Copying framework templates
+[14:18:22.647] [DEBUG] Executing command: npm config get registry -ws=false -iwr
+[14:18:24.008] [INFO] base-generator-task-success: Storybook configuration generated
+[14:18:24.011] [DEBUG] Using cached package.json for C:\Users\Pichau\Downloads\Demo\package.json...
+[14:18:24.011] [DEBUG] Using cached installed version for vitest...
+[14:18:24.011] [DEBUG] Getting installed version for @vitest/coverage-v8...
+[14:18:24.011] [DEBUG] Executing command: npm ls --json --depth=99 2>NUL
+[14:18:25.924] [DEBUG] Executing command: npm ls --json --depth=0 2>NUL
+[14:18:28.156] [DEBUG] Error finding installations for @vitest/coverage-v8: ExecaError: Command failed with exit code 1: npm.cmd ls --json "--depth=0" "2>NUL"
+
+npm error code EINVALIDTAGNAME
+npm error Invalid tag name "2>NUL" of package "2>NUL": Tags may not have any characters that encodeURIComponent encodes.
+npm error A complete log of this run can be found in: C:\Users\Pichau\AppData\Local\npm-cache\_logs\2026-02-28T17_18_27_076Z-debug-0.log
+
+{
+  "error": {
+    "code": "EINVALIDTAGNAME",
+    "summary": "Invalid tag name \"2>NUL\" of package \"2>NUL\": Tags may not have any characters that encodeURIComponent encodes.",
+    "detail": ""
+  }
+}
+[14:18:28.156] [DEBUG] No installations found for @vitest/coverage-v8
+[14:18:28.156] [DEBUG] Getting installed version for @vitest/coverage-istanbul...
+[14:18:28.156] [DEBUG] Executing command: npm ls --json --depth=99 2>NUL
+[14:18:29.848] [DEBUG] Executing command: npm ls --json --depth=0 2>NUL
+[14:18:31.483] [DEBUG] Error finding installations for @vitest/coverage-istanbul: ExecaError: Command failed with exit code 1: npm.cmd ls --json "--depth=0" "2>NUL"
+
+npm error code EINVALIDTAGNAME
+npm error Invalid tag name "2>NUL" of package "2>NUL": Tags may not have any characters that encodeURIComponent encodes.
+npm error A complete log of this run can be found in: C:\Users\Pichau\AppData\Local\npm-cache\_logs\2026-02-28T17_18_30_649Z-debug-0.log
+
+{
+  "error": {
+    "code": "EINVALIDTAGNAME",
+    "summary": "Invalid tag name \"2>NUL\" of package \"2>NUL\": Tags may not have any characters that encodeURIComponent encodes.",
+    "detail": ""
+  }
+}
+[14:18:31.483] [DEBUG] No installations found for @vitest/coverage-istanbul
+[14:18:31.484] [INFO] adding-dependencies-task-start: Adding dependencies to package.json
+[14:18:31.484] [INFO] adding-dependencies-task: Adding devDependencies:
+- @vitest/coverage-v8@^4.0.18
+[14:18:31.485] [DEBUG] Using cached package.json for C:\Users\Pichau\Downloads\Demo\package.json...
+[14:18:31.485] [DEBUG] Getting CLI versions from NPM for @vitest/coverage-v8...
+[14:18:31.485] [DEBUG] Executing command: npm info @vitest/coverage-v8 version
+[14:18:32.729] [DEBUG] Using cached package.json for C:\Users\Pichau\Downloads\Demo\package.json...
+[14:18:32.730] [INFO] adding-dependencies-task-success: Dependencies added to package.json
+[14:18:32.807] [INFO] configure-addons-task-start: Configuring addons...
+[14:18:32.808] [INFO] configure-addons-task: Configuring @chromatic-com/storybook...
+[14:18:32.825] [INFO] configure-addons-task: @chromatic-com/storybook configured
+
+[14:18:32.827] [INFO] configure-addons-task: Configuring @storybook/addon-vitest...
+[14:18:32.831] [DEBUG] Getting package.json info for C:/Users/Pichau/Downloads/Demo/package.json...
+[14:18:32.832] [DEBUG] Using cached package.json for C:\Users\Pichau\Downloads\Demo\package.json...
+[14:18:32.832] [DEBUG] Using cached installed version for vitest...
+[14:18:32.832] [DEBUG] Vitest version specifier: 4.0.18
+[14:18:32.842] [DEBUG] Using cached installed version for vitest...
+[14:18:32.842] [DEBUG] Using cached installed version for msw...
+[14:18:32.843] [INFO] Found existing Vitest setup file, reusing:
+[14:18:32.844] [INFO] C:/Users/Pichau/Downloads/Demo/.storybook/vitest.setup.ts
+
+[14:18:32.991] [ERROR] We were unable to update your existing Vite config file.
+
+Please refer to the documentation to complete the setup manually:
+https://storybook.js.org/docs/writing-tests/integrations/vitest-addon#manual-setup-advanced
+[14:18:33.044] [INFO] Setting up a11y addon for @storybook/addon-vitest
+[14:18:33.044] [INFO] Setting up a11y addon for @storybook/addon-vitest
+[14:18:33.045] [DEBUG] Executing command: npx storybook@10.2.13 automigrate addon-a11y-addon-test --loglevel silent --yes --skip-doctor --package-manager npm --skip-install
+[14:18:40.203] [INFO] a11y addon setup successfully
+[14:18:40.203] [INFO] [32ma11y addon setup successfully[39m
+[14:18:40.204] [WARN] Done, but with errors!
+@storybook/addon-vitest was installed successfully, but there were some errors during the setup process. Please refer to the documentation to complete the setup manually and check the errors above:
+https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#manual-setup-advanced
+[14:18:40.204] [DEBUG] {
+  "data": {
+    "errors": [
+      {
+        "data": {
+          "filePath": "C:\\Users\\Pichau\\Downloads\\Demo\\vite.config.ts"
+        },
+        "fromStorybook": true,
+        "isHandledError": true,
+        "subErrors": [],
+        "category": "CLI_INIT",
+        "documentation": "https://storybook.js.org/docs/writing-tests/integrations/vitest-addon#manual-setup-advanced",
+        "code": 9,
+        "_name": "AddonVitestPostinstallConfigUpdateError"
+      }
+    ]
+  },
+  "fromStorybook": true,
+  "isHandledError": true,
+  "subErrors": [
+    {
+      "data": {
+        "filePath": "C:\\Users\\Pichau\\Downloads\\Demo\\vite.config.ts"
+      },
+      "fromStorybook": true,
+      "isHandledError": true,
+      "subErrors": [],
+      "category": "CLI_INIT",
+      "documentation": "https://storybook.js.org/docs/writing-tests/integrations/vitest-addon#manual-setup-advanced",
+      "code": 9,
+      "_name": "AddonVitestPostinstallConfigUpdateError"
+    }
+  ],
+  "category": "CLI_INIT",
+  "documentation": false,
+  "code": 5,
+  "_name": "AddonVitestPostinstallError"
+}
+[14:18:40.205] [INFO] configure-addons-task: Configuring @storybook/addon-a11y...
+[14:18:40.205] [DEBUG] Executing command: npx storybook@10.2.13 automigrate addon-a11y-addon-test --loglevel silent --skip-doctor --package-manager npm --config-dir .storybook
+[14:18:45.458] [INFO] configure-addons-task: @storybook/addon-a11y configured
+
+[14:18:45.459] [INFO] configure-addons-task: Configuring @storybook/addon-docs...
+[14:18:45.465] [INFO] configure-addons-task: @storybook/addon-docs configured
+
+[14:18:45.466] [ERROR] configure-addons-task-error: Failed to configure addons
+[14:18:45.466] [INFO] [2m✅ @chromatic-com/storybook[22m
+[14:18:45.468] [INFO] [2m❌ @storybook/addon-vitest[22m
+[14:18:45.469] [INFO] [2m✅ @storybook/addon-a11y[22m
+[14:18:45.469] [INFO] [2m✅ @storybook/addon-docs[22m
+[14:18:45.470] [INFO] Playwright browser binaries are necessary for @storybook/addon-vitest. The download can take some time. If you don't want to wait, you can skip the installation and run the following command manually later:
+[36mnpx playwright install chromium --with-deps[39m
+[14:18:51.106] [PROMPT] Do you want to install Playwright with Chromium now? {"choice":true}
+[14:18:51.106] [INFO] Installing Playwright browser binaries (press "c" to abort)
+[14:18:51.106] [INFO] playwright-installation-spinner-start: Installing Playwright browser binaries (press "c" to abort)
+[14:18:51.107] [DEBUG] Executing command: npx playwright install chromium --with-deps
+[14:18:55.558] [INFO] Playwright browser binaries installed successfully
+[14:18:55.559] [INFO] playwright-installation-spinner-stop: Playwright browser binaries installed successfully
+[14:18:56.612] [WARN] Storybook setup completed, but some non-blocking errors occurred. Please check the log file below for details.
+[14:18:56.615] [INFO] To run Storybook manually, run [36mnpm run storybook[39m. CTRL+C to stop.
+[14:18:56.618] [INFO] Wanna know more about Storybook? Check out [36mhttps://storybook.js.org/[39m
+Having trouble or want to chat? Join us at [36mhttps://discord.gg/storybook/[39m

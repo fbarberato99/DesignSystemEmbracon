@@ -1,0 +1,172 @@
+{
+  "colors": {
+    "primary": {
+      "red": {
+        "value": "#CE181E",
+        "description": "Cor primária principal - Usada em CTAs, botões primários e elementos de destaque"
+      },
+      "red-dark": {
+        "value": "#AA1B22",
+        "description": "Variação escura da cor primária - Usada em estados hover e pressed"
+      }
+    },
+    "secondary": {
+      "yellow": {
+        "value": "#FACC00",
+        "description": "Cor secundária amarela - Usada em destaques e elementos de suporte"
+      },
+      "blue-light": {
+        "value": "#048ABF",
+        "description": "Cor secundária azul claro - Usada em elementos informativos"
+      },
+      "blue-dark": {
+        "value": "#173161",
+        "description": "Cor secundária azul escuro - Usada em backgrounds e elementos de contraste"
+      },
+      "white": {
+        "value": "#FFFFFF",
+        "description": "Branco - Usada em backgrounds, textos sobre fundos escuros"
+      },
+      "gray-graphite": {
+        "value": "#191E26",
+        "description": "Cinza grafite - Usada em textos principais, ícones e elementos de alto contraste"
+      },
+      "orange": {
+        "value": "#F24F1D",
+        "description": "Laranja - Usada em elementos de destaque e ações secundárias"
+      }
+    },
+    "gray": {
+      "100": {
+        "value": "#5E6267",
+        "description": "Cinza mais escuro - Textos secundários, labels"
+      },
+      "90": {
+        "value": "#6E7276",
+        "description": "Cinza 90 - Textos terciários"
+      },
+      "80": {
+        "value": "#7E8185",
+        "description": "Cinza 80 - Textos desabilitados"
+      },
+      "70": {
+        "value": "#8E9195",
+        "description": "Cinza 70 - Bordas, separadores"
+      },
+      "60": {
+        "value": "#9EA1A4",
+        "description": "Cinza 60 - Bordas secundárias"
+      },
+      "50": {
+        "value": "#AFB0B3",
+        "description": "Cinza 50 - Placeholders"
+      },
+      "40": {
+        "value": "#BFC0C2",
+        "description": "Cinza 40 - Backgrounds desabilitados"
+      },
+      "30": {
+        "value": "#CFD0D1",
+        "description": "Cinza 30 - Backgrounds secundários"
+      },
+      "20": {
+        "value": "#E7E7E8",
+        "description": "Cinza 20 - Backgrounds claros, bordas sutis"
+      },
+      "10": {
+        "value": "#F7F7F7",
+        "description": "Cinza mais claro - Backgrounds de página, cards"
+      }
+    },
+    "feedback": {
+      "neutral": {
+        "1": {
+          "value": "#152045",
+          "description": "Neutro mais escuro - Textos em elementos informativos"
+        },
+        "2": {
+          "value": "#27376B",
+          "description": "Neutro 2 - Bordas de elementos informativos"
+        },
+        "3": {
+          "value": "#3855B5",
+          "description": "Neutro 3 - Ícones informativos"
+        },
+        "4": {
+          "value": "#486DE8",
+          "description": "Neutro 4 - Elementos informativos principais"
+        },
+        "5": {
+          "value": "#90A5EC",
+          "description": "Neutro mais claro - Backgrounds informativos"
+        }
+      },
+      "success": {
+        "1": {
+          "value": "#005422",
+          "description": "Sucesso mais escuro - Textos em mensagens de sucesso"
+        },
+        "2": {
+          "value": "#008836",
+          "description": "Sucesso 2 - Bordas de elementos de sucesso"
+        },
+        "3": {
+          "value": "#008F39",
+          "description": "Sucesso 3 - Ícones de sucesso"
+        },
+        "4": {
+          "value": "#2F9B5A",
+          "description": "Sucesso 4 - Elementos de sucesso principais"
+        },
+        "5": {
+          "value": "#3FD47B",
+          "description": "Sucesso mais claro - Backgrounds de sucesso"
+        }
+      },
+      "critical": {
+        "1": {
+          "value": "#6B203C",
+          "description": "Crítico mais escuro - Textos em mensagens de erro"
+        },
+        "2": {
+          "value": "#6B0027",
+          "description": "Crítico 2 - Bordas de elementos críticos"
+        },
+        "3": {
+          "value": "#B80043",
+          "description": "Crítico 3 - Ícones de erro"
+        },
+        "4": {
+          "value": "#EB0056",
+          "description": "Crítico 4 - Elementos críticos principais"
+        },
+        "5": {
+          "value": "#EE4784",
+          "description": "Crítico mais claro - Backgrounds de erro"
+        }
+      },
+      "alert": {
+        "1": {
+          "value": "#452273",
+          "description": "Alerta mais escuro - Textos em mensagens de alerta"
+        },
+        "2": {
+          "value": "#5300BF",
+          "description": "Alerta 2 - Bordas de elementos de alerta"
+        },
+        "3": {
+          "value": "#6800F1",
+          "description": "Alerta 3 - Ícones de alerta"
+        },
+        "4": {
+          "value": "#8325FE",
+          "description": "Alerta 4 - Elementos de alerta principais"
+        },
+        "5": {
+          "value": "#9349F4",
+          "description": "Alerta mais claro - Backgrounds de alerta"
+        }
+      }
+    }
+  }
+}

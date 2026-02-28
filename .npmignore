@@ -1,0 +1,26 @@
+# Source files
+src/
+.vscode/
+.kiro/
+
+# Demo files
+index.html
+DEMO.md
+
+# Config files
+vite.config.ts
+tsconfig.json
+tsconfig.node.json
+
+# Development files
+node_modules/
+*.log
+.DS_Store
+
+# Documentation (keep only README.md)
+src/tokens/*.md
+src/styles/README.md
+
+# Git
+.git/
+.gitignore

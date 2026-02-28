@@ -1,0 +1,32 @@
+{
+  "spacing": {
+    "spacing-8": {
+      "value": "0.5rem",
+      "comment": "8px - Espaçamento extra pequeno para gaps mínimos entre elementos"
+    },
+    "spacing-16": {
+      "value": "1rem",
+      "comment": "16px - Espaçamento pequeno para gaps internos e margens compactas"
+    },
+    "spacing-24": {
+      "value": "1.5rem",
+      "comment": "24px - Espaçamento médio para separação de elementos relacionados"
+    },
+    "spacing-32": {
+      "value": "2rem",
+      "comment": "32px - Espaçamento grande para separação de seções"
+    },
+    "spacing-40": {
+      "value": "2.5rem",
+      "comment": "40px - Espaçamento extra grande para margens e paddings principais"
+    },
+    "spacing-56": {
+      "value": "3.5rem",
+      "comment": "56px - Espaçamento muito grande para separação de blocos de conteúdo"
+    },
+    "spacing-72": {
+      "value": "4.5rem",
+      "comment": "72px - Espaçamento máximo para grandes separações estruturais"
+    }
+  }
+}

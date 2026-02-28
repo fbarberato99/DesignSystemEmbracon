@@ -1,0 +1,19 @@
+/**
+ * Design System - Border Radius Tokens
+ * 
+ * Sistema de border-radius para consistência visual.
+ * Base: 16px = 1rem
+ */
+
+:root {
+  /* ========================================
+     BORDER RADIUS
+     Apenas 2 valores permitidos
+     ======================================== */
+  
+  /* 5px - Border radius pequeno */
+  --border-radius-sm: 0.3125rem;
+  
+  /* 16px - Border radius grande */
+  --border-radius-lg: 1rem;
+}

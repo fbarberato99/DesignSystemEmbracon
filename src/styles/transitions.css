@@ -1,0 +1,20 @@
+/**
+ * Design System - Transition Tokens
+ * 
+ * Tokens de transições para animações e mudanças de estado.
+ */
+
+:root {
+  /* ========================================
+     TRANSITIONS
+     ======================================== */
+  
+  /* Transição rápida - 150ms */
+  --transition-fast: 150ms ease;
+  
+  /* Transição normal - 200ms */
+  --transition-normal: 200ms ease;
+  
+  /* Transição lenta - 300ms */
+  --transition-slow: 300ms ease;
+}

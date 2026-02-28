@@ -1,0 +1,86 @@
+/**
+ * Design System - Color Tokens
+ * 
+ * Este arquivo contém todos os tokens de cores do Design System Embracon.
+ * Organize as cores por categorias para facilitar o uso e manutenção.
+ */
+
+:root {
+  /* ========================================
+     CORES PRIMÁRIAS
+     Uso: Ações principais, CTAs, elementos de destaque, cor da marca
+     ======================================== */
+  --colors-primary-red: #CE181E;
+  --colors-primary-red-dark: #AA1B22;
+
+  /* ========================================
+     CORES SECUNDÁRIAS
+     Uso: Elementos de suporte, ícones, backgrounds alternativos
+     ======================================== */
+  --colors-secondary-yellow: #FACC00;
+  --colors-secondary-blue-light: #048ABF;
+  --colors-secondary-blue-dark: #173161;
+  --colors-secondary-white: #FFFFFF;
+  --colors-secondary-gray-graphite: #191E26;
+  --colors-secondary-orange: #F24F1D;
+
+  /* ========================================
+     TONS DE CINZA
+     Uso: Textos, bordas, backgrounds, estados desabilitados
+     Escala de 100 (mais escuro) a 10 (mais claro)
+     ======================================== */
+  --colors-gray-100: #5E6267;
+  --colors-gray-90: #6E7276;
+  --colors-gray-80: #7E8185;
+  --colors-gray-70: #8E9195;
+  --colors-gray-60: #9EA1A4;
+  --colors-gray-50: #AFB0B3;
+  --colors-gray-40: #BFC0C2;
+  --colors-gray-30: #CFD0D1;
+  --colors-gray-20: #E7E7E8;
+  --colors-gray-10: #F7F7F7;
+
+  /* ========================================
+     CORES DE FEEDBACK - NEUTRO
+     Uso: Informações gerais, estados neutros, tooltips informativos
+     Escala de 1 (mais escuro) a 5 (mais claro)
+     ======================================== */
+  --colors-feedback-neutral-1: #152045;
+  --colors-feedback-neutral-2: #27376B;
+  --colors-feedback-neutral-3: #3855B5;
+  --colors-feedback-neutral-4: #486DE8;
+  --colors-feedback-neutral-5: #90A5EC;
+
+  /* ========================================
+     CORES DE FEEDBACK - SUCESSO
+     Uso: Confirmações, operações bem-sucedidas, estados positivos
+     Escala de 1 (mais escuro) a 5 (mais claro)
+     ======================================== */
+  --colors-feedback-success-1: #005422;
+  --colors-feedback-success-2: #008836;
+  --colors-feedback-success-3: #008F39;
+  --colors-feedback-success-4: #2F9B5A;
+  --colors-feedback-success-5: #3FD47B;
+
+  /* ========================================
+     CORES DE FEEDBACK - CRÍTICO
+     Uso: Erros, alertas críticos, ações destrutivas
+     Escala de 1 (mais escuro) a 5 (mais claro)
+     ======================================== */
+  --colors-feedback-critical-1: #6B203C;
+  --colors-feedback-critical-2: #6B0027;
+  --colors-feedback-critical-3: #B80043;
+  --colors-feedback-critical-4: #EB0056;
+  --colors-feedback-critical-5: #EE4784;
+
+  /* ========================================
+     CORES DE FEEDBACK - ALERTA
+     Uso: Avisos, atenção necessária, informações importantes
+     Escala de 1 (mais escuro) a 5 (mais claro)
+     ======================================== */
+  --colors-feedback-alert-1: #452273;
+  --colors-feedback-alert-2: #5300BF;
+  --colors-feedback-alert-3: #6800F1;
+  --colors-feedback-alert-4: #8325FE;
+  --colors-feedback-alert-5: #9349F4;
+}

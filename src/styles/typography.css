@@ -1,0 +1,115 @@
+/**
+ * Design System - Typography Tokens
+ * 
+ * Sistema de tipografia baseado na fonte Inter.
+ * Base: 16px = 1rem
+ */
+
+:root {
+  /* ========================================
+     FONT FAMILY
+     ======================================== */
+  
+  /* Família tipográfica principal */
+  --typography-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+
+  /* ========================================
+     TÍTULOS (H1-H8)
+     Para elementos de maior importância
+     ======================================== */
+  
+  /* H1 - 52px Bold 120% */
+  --typography-h1-size: 3.25rem;
+  --typography-h1-weight: 700;
+  --typography-h1-line-height: 1.2;
+  
+  /* H2 - 40px Extrabold 120% */
+  --typography-h2-size: 2.5rem;
+  --typography-h2-weight: 800;
+  --typography-h2-line-height: 1.2;
+  
+  /* H3 - 32px Extrabold 130% */
+  --typography-h3-size: 2rem;
+  --typography-h3-weight: 800;
+  --typography-h3-line-height: 1.3;
+  
+  /* H4 - 26px Extrabold 130% */
+  --typography-h4-size: 1.625rem;
+  --typography-h4-weight: 800;
+  --typography-h4-line-height: 1.3;
+  
+  /* H5 - 24px Semibold 130% */
+  --typography-h5-size: 1.5rem;
+  --typography-h5-weight: 600;
+  --typography-h5-line-height: 1.3;
+  
+  /* H6 - 20px Extrabold 150% */
+  --typography-h6-size: 1.25rem;
+  --typography-h6-weight: 800;
+  --typography-h6-line-height: 1.5;
+  
+  /* H7 - 18px Semibold 150% */
+  --typography-h7-size: 1.125rem;
+  --typography-h7-weight: 600;
+  --typography-h7-line-height: 1.5;
+  
+  /* H8 - 16px Semibold 150% */
+  --typography-h8-size: 1rem;
+  --typography-h8-weight: 600;
+  --typography-h8-line-height: 1.5;
+
+  /* ========================================
+     TEXTOS
+     Para conteúdo principal e secundário
+     ======================================== */
+  
+  /* Texto grande - 20px Regular 150% */
+  --typography-text-large-size: 1.25rem;
+  --typography-text-large-weight: 400;
+  --typography-text-large-line-height: 1.5;
+  
+  /* Texto corrido - 16px Regular 150% */
+  --typography-text-body-size: 1rem;
+  --typography-text-body-weight: 400;
+  --typography-text-body-line-height: 1.5;
+  
+  /* Texto corrido bold - 16px Bold 150% */
+  --typography-text-body-bold-size: 1rem;
+  --typography-text-body-bold-weight: 700;
+  --typography-text-body-bold-line-height: 1.5;
+  
+  /* Texto menor - 14px Regular 150% */
+  --typography-text-small-size: 0.875rem;
+  --typography-text-small-weight: 400;
+  --typography-text-small-line-height: 1.5;
+  
+  /* Texto menor semibold - 14px Semibold 150% */
+  --typography-text-small-semibold-size: 0.875rem;
+  --typography-text-small-semibold-weight: 600;
+  --typography-text-small-semibold-line-height: 1.5;
+  
+  /* Texto menor bold - 14px Bold 150% */
+  --typography-text-small-bold-size: 0.875rem;
+  --typography-text-small-bold-weight: 700;
+  --typography-text-small-bold-line-height: 1.5;
+
+  /* ========================================
+     LEGENDAS
+     Para textos auxiliares e labels
+     ======================================== */
+  
+  /* Legenda bold - 12px Bold 150% */
+  --typography-caption-bold-size: 0.75rem;
+  --typography-caption-bold-weight: 700;
+  --typography-caption-bold-line-height: 1.5;
+  
+  /* Legenda - 12px Regular 150% */
+  --typography-caption-size: 0.75rem;
+  --typography-caption-weight: 400;
+  --typography-caption-line-height: 1.5;
+  
+  /* Legenda menor - 10px Regular 150% */
+  --typography-caption-small-size: 0.625rem;
+  --typography-caption-small-weight: 400;
+  --typography-caption-small-line-height: 1.5;
+}
