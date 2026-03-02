@@ -6,7 +6,10 @@ export interface UploadFilesProps {
   accept?: string[]
   sizeLimit?: number
   wrongFileTypeMessage?: string
-  tooltiptext?: string
+  fullWidth?: boolean
+  tooltiptext?: boolean
+  tooltipPosicao?: 'top' | 'bottom' | 'left' | 'right'
+  tooltipLargura?: string
 }
 
 export interface UploadFilesEmits {

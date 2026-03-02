@@ -1,5 +1,5 @@
 ﻿<script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, nextTick } from 'vue'
 import Icon from '../Icon/Icon.vue'
 import type { AccordionProps, AccordionEmits } from './Accordion.types'
 
@@ -10,17 +10,25 @@ const props = withDefaults(defineProps<AccordionProps>(), {
   iconeColor: 'secondary-gray-graphite',
   chevronIcon: 'chevron-down',
   disabled: false,
+  fullWidth: false
 })
 
 const emit = defineEmits<AccordionEmits>()
 
 const isOpen = ref(false)
+const contentRef = ref<HTMLElement | null>(null)
+
+// Gera IDs únicos para acessibilidade
+const uniqueId = `accordion-${Math.random().toString(36).substr(2, 9)}`
+const headerId = `${uniqueId}-header`
+const contentId = `${uniqueId}-content`
 
 const accordionClasses = computed(() => [
   'accordion',
   {
     'accordion--open': isOpen.value,
     'accordion--disabled': props.disabled,
+    'accordion--full-width': props.fullWidth
   },
 ])
 
@@ -41,15 +49,50 @@ const handleKeydown = (event: KeyboardEvent) => {
     handleToggle()
   }
 }
+
+// Funções para animação suave com altura dinâmica
+const onBeforeEnter = (el: Element) => {
+  const element = el as HTMLElement
+  element.style.height = '0'
+  element.style.opacity = '0'
+}
+
+const onEnter = (el: Element) => {
+  const element = el as HTMLElement
+  nextTick(() => {
+    element.style.height = `${element.scrollHeight}px`
+    element.style.opacity = '1'
+  })
+}
+
+const onAfterEnter = (el: Element) => {
+  const element = el as HTMLElement
+  element.style.height = 'auto'
+}
+
+const onBeforeLeave = (el: Element) => {
+  const element = el as HTMLElement
+  element.style.height = `${element.scrollHeight}px`
+}
+
+const onLeave = (el: Element) => {
+  const element = el as HTMLElement
+  nextTick(() => {
+    element.style.height = '0'
+    element.style.opacity = '0'
+  })
+}
 </script>
 
 <template>
   <div :class="accordionClasses">
     <div
+      :id="headerId"
       class="accordion__header"
       role="button"
       tabindex="0"
       :aria-expanded="isOpen"
+      :aria-controls="contentId"
       :aria-disabled="props.disabled"
       @click="handleToggle"
       @keydown="handleKeydown"
@@ -59,6 +102,7 @@ const handleKeydown = (event: KeyboardEvent) => {
           v-if="props.icone" 
           class="accordion__icon"
           :style="{ color: iconeColorVar }"
+          aria-hidden="true"
         >
           <Icon :name="props.icone" :size="16" />
         </span>
@@ -68,13 +112,28 @@ const handleKeydown = (event: KeyboardEvent) => {
       <div 
         class="accordion__chevron"
         :class="{ 'accordion__chevron--rotated': isOpen }"
+        aria-hidden="true"
       >
         <Icon :name="props.chevronIcon" :size="24" />
       </div>
     </div>
     
-    <transition name="accordion-content">
-      <div v-if="isOpen" class="accordion__content">
+    <transition 
+      name="accordion-content"
+      @before-enter="onBeforeEnter"
+      @enter="onEnter"
+      @after-enter="onAfterEnter"
+      @before-leave="onBeforeLeave"
+      @leave="onLeave"
+    >
+      <div 
+        v-if="isOpen" 
+        :id="contentId"
+        ref="contentRef" 
+        class="accordion__content"
+        role="region"
+        :aria-labelledby="headerId"
+      >
         <slot>
           <p class="accordion__text">{{ props.conteudo }}</p>
         </slot>
@@ -170,7 +229,7 @@ const handleKeydown = (event: KeyboardEvent) => {
   height: 24px;
   flex-shrink: 0;
   color: var(--colors-secondary-gray-graphite);
-  transition: transform 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   transform: rotate(-90deg);
 }
 
@@ -182,6 +241,8 @@ const handleKeydown = (event: KeyboardEvent) => {
 .accordion__content {
   width: 100%;
   overflow: hidden;
+  transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .accordion__text {
@@ -191,19 +252,5 @@ const handleKeydown = (event: KeyboardEvent) => {
   font-weight: var(--typography-text-body-weight);
   line-height: var(--typography-text-body-line-height);
   color: var(--colors-gray-100);
-}
-
-/* ========== Transitions ========== */
-.accordion-content-enter-active,
-.accordion-content-leave-active {
-  transition: all 0.3s ease;
-  max-height: 500px;
-  opacity: 1;
-}
-
-.accordion-content-enter-from,
-.accordion-content-leave-to {
-  max-height: 0;
-  opacity: 0;
 }
 </style>

@@ -3,7 +3,7 @@ export interface TooltipProps {
   conteudo: string
   botaoTxt?: string
   icon?: string
-  posicao?: 'top' | 'bottom'
+  posicao?: 'top' | 'bottom' | 'left' | 'right'
   largura?: string
 }
 

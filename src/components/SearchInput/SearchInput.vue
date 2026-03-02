@@ -8,7 +8,8 @@ const props = withDefaults(defineProps<SearchInputProps>(), {
   placeholder: 'Pesquisar',
   searchIcon: 'pesquisar',
   clearIcon: 'fechar',
-  disabled: false
+  disabled: false,
+  fullWidth: false
 })
 
 const emit = defineEmits<SearchInputEmits>()
@@ -53,7 +54,8 @@ const clearInput = () => {
     :class="{
       'search-input--focused': isFocused,
       'search-input--has-value': internalValue,
-      'search-input--disabled': props.disabled
+      'search-input--disabled': props.disabled,
+      'search-input--full-width': props.fullWidth
     }"
   >
     <!-- Ícone de Pesquisa -->
@@ -98,7 +100,6 @@ const clearInput = () => {
   border: 1px solid var(--colors-gray-20);
   border-radius: var(--border-radius-sm);
   width: 100%;
-  max-width: 443px;
   transition: border-color 0.2s ease;
 }
 

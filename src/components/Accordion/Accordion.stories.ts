@@ -107,6 +107,6 @@ export const Default: Story = {
   }),
   args: {
     titulo: 'Como funciona o consórcio?',
-    conteudo: 'O consórcio é uma modalidade de compra programada que permite adquirir bens ou serviços sem pagar juros.'
+    conteudo: 'O consórcio é uma modalidade de compra programada que permite adquirir bens ou serviços sem pagar juros. É uma forma de poupar dinheiro de maneira organizada e planejada, reunindo pessoas com o mesmo objetivo de compra.'
   }
 }

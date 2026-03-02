@@ -9,68 +9,93 @@ const meta: Meta<typeof Input> = {
   argTypes: {
     label: {
       control: 'text',
-      description: 'Nome do campo exibido acima do input',
+      description: 'Nome do campo exibido acima do input.',
       table: {
-        type: { summary: 'string' },
+        type: { summary: 'String' },
         defaultValue: { summary: '""' }
       }
     },
     placeholder: {
       control: 'text',
-      description: 'Texto de exemplo dentro do input',
+      description: 'Texto de exemplo dentro do input.',
       table: {
-        type: { summary: 'string' },
+        type: { summary: 'String' },
         defaultValue: { summary: '""' }
       }
     },
     caption: {
       control: 'text',
-      description: 'Orientações adicionais caso necessário',
+      description: 'Orientações adicionais caso necessário.',
       table: {
-        type: { summary: 'string' },
+        type: { summary: 'String' },
         defaultValue: { summary: '""' }
       }
     },
     type: {
       control: 'select',
       options: ['text', 'password', 'email', 'number'],
-      description: 'Tipo do input HTML',
+      description: 'Tipo do input HTML.',
       table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: "'text'" }
+        type: { summary: 'String' },
+        defaultValue: { summary: 'text' }
       }
     },
     size: {
       control: 'select',
       options: ['48px', '40px'],
-      description: 'Altura do input',
+      description: 'Altura do input.',
       table: {
         type: { summary: "'48px' | '40px'" },
-        defaultValue: { summary: "'48px'" }
+        defaultValue: { summary: '48px' }
       }
     },
     disabled: {
       control: 'boolean',
-      description: 'Desabilita o input',
+      description: 'Desabilita o input.',
       table: {
-        type: { summary: 'boolean' },
+        type: { summary: 'Boolean' },
         defaultValue: { summary: 'false' }
       }
     },
     maxLength: {
       control: 'number',
-      description: 'Limite de caracteres',
+      description: 'Limite de caracteres.',
       table: {
-        type: { summary: 'number' },
-        defaultValue: { summary: 'undefined' }
+        type: { summary: 'Number' },
+        defaultValue: { summary: '-' }
+      }
+    },
+    fullWidth: {
+      control: 'boolean',
+      description: 'Define se o componente ocupa 100% da largura disponível.',
+      table: {
+        type: { summary: 'Boolean' },
+        defaultValue: { summary: 'false' }
       }
     },
     tooltiptext: {
-      control: 'text',
-      description: 'Texto exibido no tooltip ao passar o mouse sobre o ícone de informação',
+      control: 'boolean',
+      description: 'Ativa ou desativa o ícone de tooltip.',
       table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '""' }
+        type: { summary: 'Boolean' },
+        defaultValue: { summary: 'false' }
+      }
+    },
+    tooltipPosicao: {
+      control: 'select',
+      options: ['top', 'bottom', 'left', 'right'],
+      description: 'Posição do tooltip em relação ao ícone.',
+      table: {
+        type: { summary: "'top' | 'bottom' | 'left' | 'right'" },
+        defaultValue: { summary: 'top' }
+      }
+    },
+    tooltipLargura: {
+      control: 'text',
+      description: 'Largura customizada do tooltip.',
+      table: {
+        type: { summary: 'String' },
+        defaultValue: { summary: '200px' }
       }
     }
   }
@@ -94,7 +119,10 @@ export const Default: Story = {
       :type="args.type"
       :disabled="args.disabled"
       :maxLength="args.maxLength"
+      :fullWidth="args.fullWidth"
       :tooltiptext="args.tooltiptext"
+      :tooltipPosicao="args.tooltipPosicao"
+      :tooltipLargura="args.tooltipLargura"
       :size="args.size === '48px' ? 'lg' : 'sm'"
     />`
   }),

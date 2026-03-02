@@ -9,12 +9,51 @@ const meta: Meta<typeof Tooltip> = {
   argTypes: {
     conteudo: {
       control: 'text',
-      description: 'Conteúdo do tooltip'
+      description: 'Conteúdo do tooltip',
+      table: {
+        type: { summary: 'String' }
+      }
+    },
+    titulo: {
+      control: 'text',
+      description: 'Título opcional do tooltip',
+      table: {
+        type: { summary: 'String' },
+        defaultValue: { summary: '-' }
+      }
+    },
+    icon: {
+      control: 'text',
+      description: 'Nome do ícone exibido como trigger',
+      table: {
+        type: { summary: 'String' },
+        defaultValue: { summary: 'ajuda' }
+      }
     },
     posicao: {
       control: 'select',
       options: ['top', 'bottom', 'left', 'right'],
-      description: 'Posição do tooltip'
+      description: 'Posição do tooltip em relação ao trigger',
+      table: {
+        type: { summary: "'top' | 'bottom' | 'left' | 'right'" },
+        defaultValue: { summary: 'top' }
+      }
+    },
+    largura: {
+      control: 'text',
+      description: 'Largura customizada do tooltip',
+      table: {
+        type: { summary: 'String' },
+        defaultValue: { summary: '200px' }
+      }
+    },
+    botaoTxt: {
+      control: 'text',
+      description: 'Texto do botão de ação (opcional)',
+      table: {
+        type: { summary: 'String' },
+        defaultValue: { summary: '-' }
+      }
     }
   }
 }
@@ -22,90 +61,21 @@ const meta: Meta<typeof Tooltip> = {
 export default meta
 type Story = StoryObj<typeof Tooltip>
 
-export const Top: Story = {
+export const Default: Story = {
   render: (args) => ({
-    components: { Tooltip, PrimaryButton },
+    components: { Tooltip },
     setup() {
       return { args }
     },
     template: `
       <div style="padding: 100px; display: flex; justify-content: center;">
-        <Tooltip v-bind="args">
-          <template #icon>
-            <PrimaryButton size="40px">Hover aqui</PrimaryButton>
-          </template>
-        </Tooltip>
+        <Tooltip v-bind="args" />
       </div>
     `
   }),
   args: {
-    conteudo: 'Dica útil no topo',
-    posicao: 'top'
-  }
-}
-
-export const Bottom: Story = {
-  render: (args) => ({
-    components: { Tooltip, PrimaryButton },
-    setup() {
-      return { args }
-    },
-    template: `
-      <div style="padding: 100px; display: flex; justify-content: center;">
-        <Tooltip v-bind="args">
-          <template #icon>
-            <PrimaryButton size="40px">Hover aqui</PrimaryButton>
-          </template>
-        </Tooltip>
-      </div>
-    `
-  }),
-  args: {
-    conteudo: 'Dica útil embaixo',
-    posicao: 'bottom'
-  }
-}
-
-export const Left: Story = {
-  render: (args) => ({
-    components: { Tooltip, PrimaryButton },
-    setup() {
-      return { args }
-    },
-    template: `
-      <div style="padding: 100px; display: flex; justify-content: center;">
-        <Tooltip v-bind="args">
-          <template #icon>
-            <PrimaryButton size="40px">Hover aqui</PrimaryButton>
-          </template>
-        </Tooltip>
-      </div>
-    `
-  }),
-  args: {
-    conteudo: 'Dica à esquerda',
-    posicao: 'left'
-  }
-}
-
-export const Right: Story = {
-  render: (args) => ({
-    components: { Tooltip, PrimaryButton },
-    setup() {
-      return { args }
-    },
-    template: `
-      <div style="padding: 100px; display: flex; justify-content: center;">
-        <Tooltip v-bind="args">
-          <template #icon>
-            <PrimaryButton size="40px">Hover aqui</PrimaryButton>
-          </template>
-        </Tooltip>
-      </div>
-    `
-  }),
-  args: {
-    conteudo: 'Dica à direita',
-    posicao: 'right'
+    conteudo: 'Esta é uma dica útil',
+    posicao: 'top',
+    icon: 'ajuda'
   }
 }

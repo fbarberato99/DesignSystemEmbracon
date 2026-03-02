@@ -19,7 +19,7 @@ const isLastItem = (index: number) => {
         class="breadcrumbs-item"
       >
         <!-- Separador -->
-        <span v-if="index > 0" class="breadcrumbs-separator">/</span>
+        <span v-if="index > 0" class="breadcrumbs-separator" aria-hidden="true">/</span>
 
         <!-- Link ou texto -->
         <a

@@ -78,6 +78,12 @@ export interface AccordionProps {
    * @default false
    */
   disabled?: boolean
+  
+  /**
+   * Define se o componente ocupa 100% da largura disponível
+   * @default false
+   */
+  fullWidth?: boolean
 }
 
 export interface AccordionEmits {

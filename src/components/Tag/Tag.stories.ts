@@ -29,72 +29,16 @@ const meta: Meta<typeof Tag> = {
 export default meta
 type Story = StoryObj<typeof Tag>
 
-export const Sucesso: Story = {
+export const Default: Story = {
   render: (args) => ({
     components: { Tag },
     setup() {
       return { args }
     },
-    template: '<div style="display: inline-flex;"><Tag v-bind="args" /></div>'
+    template: '<Tag v-bind="args" />'
   }),
   args: {
     variante: 'sucesso',
     texto: 'Aprovado'
   }
-}
-
-export const Erro: Story = {
-  render: (args) => ({
-    components: { Tag },
-    setup() {
-      return { args }
-    },
-    template: '<div style="display: inline-flex;"><Tag v-bind="args" /></div>'
-  }),
-  args: {
-    variante: 'erro',
-    texto: 'Rejeitado'
-  }
-}
-
-export const Atencao: Story = {
-  render: (args) => ({
-    components: { Tag },
-    setup() {
-      return { args }
-    },
-    template: '<div style="display: inline-flex;"><Tag v-bind="args" /></div>'
-  }),
-  args: {
-    variante: 'atencao',
-    texto: 'Pendente'
-  }
-}
-
-export const Info: Story = {
-  render: (args) => ({
-    components: { Tag },
-    setup() {
-      return { args }
-    },
-    template: '<div style="display: inline-flex;"><Tag v-bind="args" /></div>'
-  }),
-  args: {
-    variante: 'info',
-    texto: 'Informação'
-  }
-}
-
-export const AllVariants: Story = {
-  render: () => ({
-    components: { Tag },
-    template: `
-      <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-        <Tag variante="sucesso" texto="Sucesso" />
-        <Tag variante="erro" texto="Erro" />
-        <Tag variante="atencao" texto="Atenção" />
-        <Tag variante="info" texto="Info" />
-      </div>
-    `
-  })
 }

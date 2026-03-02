@@ -12,7 +12,10 @@ export interface InputProps {
   disabled?: boolean
   size?: InputSize
   customClass?: string
-  tooltiptext?: string
+  fullWidth?: boolean
+  tooltiptext?: boolean
+  tooltipPosicao?: 'top' | 'bottom' | 'left' | 'right'
+  tooltipLargura?: string
   rules?: ValidationRule[]
   noNumbers?: boolean
   onlyNumbers?: boolean

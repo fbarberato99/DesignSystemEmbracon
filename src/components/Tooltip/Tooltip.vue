@@ -1,12 +1,12 @@
 ﻿<script setup lang="ts">
-import { ref, useSlots } from 'vue'
+import { ref, useSlots, computed } from 'vue'
 import Icon from '../Icon/Icon.vue'
 import type { TooltipProps, TooltipEmits } from './Tooltip.types'
 
 const props = withDefaults(defineProps<TooltipProps>(), {
   posicao: 'top',
   largura: '200px',
-  icon: 'informacao'
+  icon: 'ajuda'
 })
 
 const emit = defineEmits<TooltipEmits>()
@@ -14,6 +14,9 @@ const slots = useSlots()
 
 const isVisible = ref(false)
 let hideTimeout: ReturnType<typeof setTimeout> | null = null
+
+// ID único para acessibilidade
+const tooltipId = `tooltip-${Math.random().toString(36).substr(2, 9)}`
 
 const showTooltip = () => {
   if (hideTimeout) {
@@ -39,6 +42,12 @@ const handleBotaoClick = () => {
   isVisible.value = false // Fecha o tooltip após clicar no botão
 }
 
+const handleEscape = (e: KeyboardEvent) => {
+  if (e.key === 'Escape' && isVisible.value && props.botaoTxt) {
+    isVisible.value = false
+  }
+}
+
 </script>
 
 <template>
@@ -46,13 +55,15 @@ const handleBotaoClick = () => {
     <!-- Trigger (elemento que ativa o tooltip) -->
     <div
       class="tooltip-trigger"
+      :aria-describedby="isVisible ? tooltipId : undefined"
       @mouseenter="showTooltip"
       @mouseleave="hideTooltip"
       @focus="showTooltip"
       @blur="hideTooltip"
+      @keydown="handleEscape"
     >
       <slot name="icon">
-        <Icon v-if="props.icon" :name="props.icon" :size="24" class="tooltip-icon" />
+        <Icon v-if="icon" :name="icon" :size="24" class="tooltip-icon" />
       </slot>
     </div>
 
@@ -60,6 +71,7 @@ const handleBotaoClick = () => {
     <transition name="tooltip-fade">
       <div
         v-if="isVisible"
+        :id="tooltipId"
         class="tooltip-content"
         :class="[
           `tooltip-content--${posicao}`,
@@ -145,13 +157,37 @@ const handleBotaoClick = () => {
   transform: translateX(-50%);
 }
 
+/* Posicionamento Left */
+.tooltip-content--left {
+  right: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Posicionamento Right */
+.tooltip-content--right {
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 /* Seta do Tooltip */
 .tooltip-arrow {
   position: absolute;
   width: 0;
   height: 0;
+}
+
+.tooltip-content--top .tooltip-arrow,
+.tooltip-content--bottom .tooltip-arrow {
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
+}
+
+.tooltip-content--left .tooltip-arrow,
+.tooltip-content--right .tooltip-arrow {
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
 }
 
 .tooltip-content--top .tooltip-arrow {
@@ -166,6 +202,20 @@ const handleBotaoClick = () => {
   left: 50%;
   transform: translateX(-50%);
   border-bottom: 8px solid var(--colors-secondary-gray-graphite);
+}
+
+.tooltip-content--left .tooltip-arrow {
+  right: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-left: 8px solid var(--colors-secondary-gray-graphite);
+}
+
+.tooltip-content--right .tooltip-arrow {
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-right: 8px solid var(--colors-secondary-gray-graphite);
 }
 
 /* Corpo do Tooltip */
@@ -231,11 +281,25 @@ const handleBotaoClick = () => {
 .tooltip-fade-enter-from,
 .tooltip-fade-leave-to {
   opacity: 0;
+}
+
+.tooltip-content--top.tooltip-fade-enter-from,
+.tooltip-content--top.tooltip-fade-leave-to {
   transform: translateX(-50%) translateY(-4px);
 }
 
 .tooltip-content--bottom.tooltip-fade-enter-from,
 .tooltip-content--bottom.tooltip-fade-leave-to {
   transform: translateX(-50%) translateY(4px);
+}
+
+.tooltip-content--left.tooltip-fade-enter-from,
+.tooltip-content--left.tooltip-fade-leave-to {
+  transform: translateY(-50%) translateX(-4px);
+}
+
+.tooltip-content--right.tooltip-fade-enter-from,
+.tooltip-content--right.tooltip-fade-leave-to {
+  transform: translateY(-50%) translateX(4px);
 }
 </style>

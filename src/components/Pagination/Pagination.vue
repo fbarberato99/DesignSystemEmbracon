@@ -73,6 +73,7 @@ const goToNext = () => {
       :class="{ 'pagination-button--disabled': !canGoPrevious }"
       :disabled="!canGoPrevious"
       :aria-disabled="!canGoPrevious"
+      aria-label="Ir para página anterior"
       @click="goToPrevious"
     >
       Anterior
@@ -85,6 +86,7 @@ const goToNext = () => {
       class="pagination-button pagination-button--page"
       :class="{ 'pagination-button--active': page === modelValue }"
       :aria-current="page === modelValue ? 'page' : undefined"
+      :aria-label="`Ir para página ${page}`"
       @click="goToPage(page)"
     >
       {{ page }}
@@ -96,6 +98,7 @@ const goToNext = () => {
       :class="{ 'pagination-button--disabled': !canGoNext }"
       :disabled="!canGoNext"
       :aria-disabled="!canGoNext"
+      aria-label="Ir para próxima página"
       @click="goToNext"
     >
       Próximo

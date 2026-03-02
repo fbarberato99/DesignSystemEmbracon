@@ -4,6 +4,7 @@ export interface SearchInputProps {
   searchIcon?: string
   clearIcon?: string
   disabled?: boolean
+  fullWidth?: boolean
 }
 
 export interface SearchInputEmits {

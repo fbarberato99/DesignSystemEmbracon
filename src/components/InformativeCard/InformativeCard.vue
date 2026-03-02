@@ -7,7 +7,8 @@ const props = withDefaults(defineProps<InformativeCardProps>(), {
   titulo: '',
   texto: '',
   icon: 'informacao',
-  iconColor: 'gray-100'
+  iconColor: 'gray-100',
+  fullWidth: false
 })
 
 const iconColorVar = computed(() => {
@@ -17,7 +18,7 @@ const iconColorVar = computed(() => {
 </script>
 
 <template>
-  <div class="informative-card">
+  <div class="informative-card" :class="{ 'informative-card--full-width': fullWidth }">
     <!-- Ícone à esquerda -->
     <div 
       v-if="props.icon"
@@ -55,6 +56,11 @@ const iconColorVar = computed(() => {
   border-radius: var(--border-radius-sm);
   background: var(--colors-gray-10);
   box-sizing: border-box;
+}
+
+.informative-card--full-width {
+  max-width: none;
+  width: 100%;
 }
 
 .informative-card-icon {

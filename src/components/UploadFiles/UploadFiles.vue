@@ -1,13 +1,17 @@
 ﻿<script setup lang="ts">
 import { ref, computed } from 'vue'
+import Tooltip from '../Tooltip/Tooltip.vue'
 import type { UploadFilesProps, UploadFilesEmits, UploadedFile } from './UploadFiles.types'
 
 const props = withDefaults(defineProps<UploadFilesProps>(), {
   disabled: false,
   accept: () => ['jpeg', 'png', 'pdf'],
   sizeLimit: 8,
-  wrongFileTypeMessage: 'Somente imagens JPEG são aceitas.',
-  tooltiptext: ''
+  wrongFileTypeMessage: '',
+  fullWidth: false,
+  tooltiptext: false,
+  tooltipPosicao: 'top',
+  tooltipLargura: '200px'
 })
 
 const emit = defineEmits<UploadFilesEmits>()
@@ -132,7 +136,7 @@ const viewAttachment = () => {
 </script>
 
 <template>
-  <div class="upload-files" :class="`upload-files--${currentState}`">
+  <div class="upload-files" :class="[`upload-files--${currentState}`, { 'upload-files--full-width': fullWidth }]">
     <!-- Input oculto -->
     <input
       ref="fileInputRef"
@@ -159,19 +163,21 @@ const viewAttachment = () => {
       <div class="upload-files-text">
         <div class="upload-files-title-row">
           <span class="upload-files-title">{{ titulo }}</span>
-          <div v-if="tooltiptext" class="upload-files-tooltip">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <g clip-path="url(#clip0_2674_2881)">
-                <path d="M6.90411 13.125C5.30191 13.125 3.76534 12.4797 2.63241 11.331C1.49948 10.1824 0.863014 8.62445 0.863014 7C0.863014 5.37555 1.49948 3.81763 2.63241 2.66897C3.76534 1.52031 5.30191 0.875 6.90411 0.875C8.50631 0.875 10.0429 1.52031 11.1758 2.66897C12.3087 3.81763 12.9452 5.37555 12.9452 7C12.9452 8.62445 12.3087 10.1824 11.1758 11.331C10.0429 12.4797 8.50631 13.125 6.90411 13.125ZM6.90411 14C8.73519 14 10.4913 13.2625 11.7861 11.9497C13.0808 10.637 13.8082 8.85652 13.8082 7C13.8082 5.14348 13.0808 3.36301 11.7861 2.05025C10.4913 0.737498 8.73519 0 6.90411 0C5.07303 0 3.31694 0.737498 2.02217 2.05025C0.727395 3.36301 0 5.14348 0 7C0 8.85652 0.727395 10.637 2.02217 11.9497C3.31694 13.2625 5.07303 14 6.90411 14Z" fill="#191E26"/>
-                <path d="M4.53534 5.06275C4.53416 5.09101 4.53869 5.11921 4.54866 5.14563C4.55862 5.17204 4.57381 5.19611 4.5933 5.21636C4.61278 5.2366 4.63614 5.25259 4.66194 5.26334C4.68774 5.27409 4.71543 5.27938 4.74333 5.27888H5.45531C5.57441 5.27888 5.66934 5.18 5.68487 5.06013C5.76255 4.48613 6.1509 4.06788 6.84304 4.06788C7.43507 4.06788 7.97704 4.368 7.97704 5.08988C7.97704 5.6455 7.65427 5.901 7.14423 6.2895C6.56342 6.71738 6.10344 7.217 6.13623 8.02813L6.13882 8.218C6.13973 8.27541 6.16286 8.33015 6.20322 8.37042C6.24358 8.41069 6.29794 8.43326 6.35457 8.43325H7.05448C7.1117 8.43325 7.16658 8.4102 7.20704 8.36918C7.2475 8.32816 7.27023 8.27252 7.27023 8.2145V8.12263C7.27023 7.49438 7.50583 7.3115 8.14187 6.82238C8.66745 6.41725 9.21546 5.9675 9.21546 5.02338C9.21546 3.70125 8.11426 3.0625 6.90863 3.0625C5.81519 3.0625 4.61733 3.57875 4.53534 5.06275ZM5.87905 10.1054C5.87905 10.5718 6.24583 10.9165 6.7507 10.9165C7.27627 10.9165 7.63787 10.5718 7.63787 10.1054C7.63787 9.62238 7.27541 9.28288 6.74983 9.28288C6.24583 9.28288 5.87905 9.62238 5.87905 10.1054Z" fill="#191E26"/>
-              </g>
-              <defs>
-                <clipPath id="clip0_2674_2881">
-                  <rect width="13.8082" height="14" fill="white"/>
-                </clipPath>
-              </defs>
-            </svg>
-          </div>
+          <Tooltip v-if="tooltiptext" conteudo="Texto do tooltip exibido em '?'" :posicao="tooltipPosicao" :largura="tooltipLargura" icon="ajuda">
+            <template #icon>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none" style="cursor: pointer;">
+                <g clip-path="url(#clip0_2674_2881)">
+                  <path d="M6.90411 13.125C5.30191 13.125 3.76534 12.4797 2.63241 11.331C1.49948 10.1824 0.863014 8.62445 0.863014 7C0.863014 5.37555 1.49948 3.81763 2.63241 2.66897C3.76534 1.52031 5.30191 0.875 6.90411 0.875C8.50631 0.875 10.0429 1.52031 11.1758 2.66897C12.3087 3.81763 12.9452 5.37555 12.9452 7C12.9452 8.62445 12.3087 10.1824 11.1758 11.331C10.0429 12.4797 8.50631 13.125 6.90411 13.125ZM6.90411 14C8.73519 14 10.4913 13.2625 11.7861 11.9497C13.0808 10.637 13.8082 8.85652 13.8082 7C13.8082 5.14348 13.0808 3.36301 11.7861 2.05025C10.4913 0.737498 8.73519 0 6.90411 0C5.07303 0 3.31694 0.737498 2.02217 2.05025C0.727395 3.36301 0 5.14348 0 7C0 8.85652 0.727395 10.637 2.02217 11.9497C3.31694 13.2625 5.07303 14 6.90411 14Z" fill="#191E26"/>
+                  <path d="M4.53534 5.06275C4.53416 5.09101 4.53869 5.11921 4.54866 5.14563C4.55862 5.17204 4.57381 5.19611 4.5933 5.21636C4.61278 5.2366 4.63614 5.25259 4.66194 5.26334C4.68774 5.27409 4.71543 5.27938 4.74333 5.27888H5.45531C5.57441 5.27888 5.66934 5.18 5.68487 5.06013C5.76255 4.48613 6.1509 4.06788 6.84304 4.06788C7.43507 4.06788 7.97704 4.368 7.97704 5.08988C7.97704 5.6455 7.65427 5.901 7.14423 6.2895C6.56342 6.71738 6.10344 7.217 6.13623 8.02813L6.13882 8.218C6.13973 8.27541 6.16286 8.33015 6.20322 8.37042C6.24358 8.41069 6.29794 8.43326 6.35457 8.43325H7.05448C7.1117 8.43325 7.16658 8.4102 7.20704 8.36918C7.2475 8.32816 7.27023 8.27252 7.27023 8.2145V8.12263C7.27023 7.49438 7.50583 7.3115 8.14187 6.82238C8.66745 6.41725 9.21546 5.9675 9.21546 5.02338C9.21546 3.70125 8.11426 3.0625 6.90863 3.0625C5.81519 3.0625 4.61733 3.57875 4.53534 5.06275ZM5.87905 10.1054C5.87905 10.5718 6.24583 10.9165 6.7507 10.9165C7.27627 10.9165 7.63787 10.5718 7.63787 10.1054C7.63787 9.62238 7.27541 9.28288 6.74983 9.28288C6.24583 9.28288 5.87905 9.62238 5.87905 10.1054Z" fill="#191E26"/>
+                </g>
+                <defs>
+                  <clipPath id="clip0_2674_2881">
+                    <rect width="13.8082" height="14" fill="white"/>
+                  </clipPath>
+                </defs>
+              </svg>
+            </template>
+          </Tooltip>
         </div>
         <p class="upload-files-info">
           <span class="upload-files-types">{{ acceptedTypesDisplay }}</span>
@@ -275,13 +281,11 @@ const viewAttachment = () => {
 <style scoped>
 .upload-files {
   position: relative;
-  width: 343px;
-  max-width: 100%;
+  width: 100%;
   height: 80px;
   background: var(--colors-secondary-white);
   border: 1px solid var(--colors-gray-20);
   border-radius: var(--border-radius-sm);
-  overflow: hidden;
   flex-shrink: 0;
 }
 
@@ -353,13 +357,6 @@ const viewAttachment = () => {
   font-weight: 600;
   line-height: 1.5;
   color: var(--colors-secondary-gray-graphite);
-}
-
-.upload-files-tooltip {
-  flex-shrink: 0;
-  width: 14px;
-  height: 14px;
-  cursor: help;
 }
 
 .upload-files-info {
@@ -465,6 +462,7 @@ const viewAttachment = () => {
   height: 5px;
   background: var(--colors-gray-20);
   overflow: hidden;
+  border-radius: 0 0 var(--border-radius-sm) var(--border-radius-sm);
 }
 
 .upload-files-progress::after {

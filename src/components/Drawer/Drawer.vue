@@ -40,10 +40,25 @@ const handleDrawerClick = (e: Event) => {
   e.stopPropagation()
 }
 
-// Controla o scroll do body
+// Controla o scroll do body e ESC
 watch(isOpen, (newValue) => {
   if (newValue) {
     document.body.style.overflow = 'hidden'
+    // Adiciona listener para ESC
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        handleClose()
+      }
+    }
+    document.addEventListener('keydown', handleEscape)
+    
+    // Remove listener ao fechar
+    const cleanup = () => {
+      document.removeEventListener('keydown', handleEscape)
+    }
+    
+    // Retorna cleanup
+    return cleanup
   } else {
     document.body.style.overflow = ''
   }
@@ -60,6 +75,9 @@ watch(isOpen, (newValue) => {
         @click="handleOverlayClick"
       >
         <div
+          role="dialog"
+          aria-modal="true"
+          :aria-labelledby="title ? 'drawer-title' : undefined"
           class="drawer"
           :class="{
             'drawer--modal': desktopAsModal,
@@ -72,13 +90,13 @@ watch(isOpen, (newValue) => {
           <!-- Conteúdo -->
           <div class="drawer-content">
             <!-- Ícone (opcional) -->
-            <div v-if="props.icon" class="drawer-icon">
+            <div v-if="props.icon" class="drawer-icon" aria-hidden="true">
               <Icon :name="props.icon" :size="24" color="#CE181E" />
             </div>
 
             <!-- Header -->
             <div class="drawer-header">
-              <h2 v-if="title" class="drawer-title">{{ title }}</h2>
+              <h2 v-if="title" id="drawer-title" class="drawer-title">{{ title }}</h2>
               <button
                 v-if="closeButton"
                 type="button"

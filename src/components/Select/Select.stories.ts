@@ -7,34 +7,79 @@ const meta: Meta<typeof Select> = {
   component: Select,
   tags: ['autodocs'],
   argTypes: {
+    label: {
+      control: 'text',
+      description: 'Texto exibido acima do campo select',
+      table: {
+        type: { summary: 'String' },
+        defaultValue: { summary: '""' }
+      }
+    },
+    placeholder: {
+      control: 'text',
+      description: 'Texto exibido quando nenhuma opção está selecionada',
+      table: {
+        type: { summary: 'String' },
+        defaultValue: { summary: 'Selecione' }
+      }
+    },
+    options: {
+      control: 'object',
+      description: 'Array de opções disponíveis para seleção. Cada opção deve ter { value: string, label: string }',
+      table: {
+        type: { summary: 'Array<{ value: string, label: string }>' },
+        defaultValue: { summary: '[]' }
+      }
+    },
+    value: {
+      control: 'text',
+      description: 'Valor selecionado atualmente, acessível via v-model',
+      table: {
+        type: { summary: 'String' },
+        defaultValue: { summary: '""' }
+      }
+    },
     size: {
       control: 'select',
       options: ['48px', '40px'],
-      description: 'Tamanho do select',
+      description: 'Define a altura do componente select',
+      table: {
+        type: { summary: "'48px' | '40px'" },
+        defaultValue: { summary: '48px' }
+      },
       mapping: {
         '48px': 'lg',
         '40px': 'sm'
       }
     },
-    label: {
-      control: 'text',
-      description: 'Label do select'
-    },
-    placeholder: {
-      control: 'text',
-      description: 'Placeholder do select'
-    },
     leftIcon: {
       control: 'text',
-      description: 'Nome do ícone à esquerda (ex: home, pesquisar). Aceita nomes em kebab-case.'
-    },
-    chevronIcon: {
-      control: 'text',
-      description: 'Nome do ícone chevron (ex: chevron-down, chevron-up). Aceita nomes em kebab-case.'
+      description: 'Nome do ícone exibido à esquerda do texto (opcional)',
+      table: {
+        type: { summary: 'String' },
+        defaultValue: { summary: '-' }
+      }
     },
     disabled: {
       control: 'boolean',
-      description: 'Estado desabilitado'
+      description: 'Quando true, desabilita a interação com o select',
+      table: {
+        type: { summary: 'Boolean' },
+        defaultValue: { summary: 'false' }
+      }
+    },
+    chevronIcon: {
+      table: {
+        disable: true
+      }
+    },
+    // Eventos
+    input: {
+      description: 'Emitido quando uma opção é selecionada',
+      table: {
+        category: 'Eventos',
+        type: { summary: '(value: string) => void' }
+      }
     }
   }
 }
@@ -55,60 +100,11 @@ export const Default: Story = {
       const value = ref('')
       return { args, value, options }
     },
-    template: '<div style="max-width: 400px;"><Select v-bind="args" v-model="value" :options="options" /></div>'
+    template: '<Select v-bind="args" v-model="value" :options="options" />'
   }),
   args: {
     label: 'Selecione uma opção',
     placeholder: 'Escolha...',
-    size: 'lg'
+    size: '48px'
   }
-}
-
-export const WithValue: Story = {
-  render: (args) => ({
-    components: { Select },
-    setup() {
-      const value = ref('2')
-      return { args, value, options }
-    },
-    template: '<div style="max-width: 400px;"><Select v-bind="args" v-model="value" :options="options" /></div>'
-  }),
-  args: {
-    label: 'Opção selecionada',
-    placeholder: 'Escolha...'
-  }
-}
-
-export const Disabled: Story = {
-  render: (args) => ({
-    components: { Select },
-    setup() {
-      const value = ref('')
-      return { args, value, options }
-    },
-    template: '<div style="max-width: 400px;"><Select v-bind="args" v-model="value" :options="options" /></div>'
-  }),
-  args: {
-    label: 'Select desabilitado',
-    disabled: true
-  }
-}
-
-export const AllStates: Story = {
-  render: () => ({
-    components: { Select },
-    setup() {
-      const value1 = ref('')
-      const value2 = ref('2')
-      const value3 = ref('')
-      return { value1, value2, value3, options }
-    },
-    template: `
-      <div style="max-width: 400px; display: flex; flex-direction: column; gap: 24px;">
-        <Select v-model="value1" label="Vazio" placeholder="Escolha..." :options="options" />
-        <Select v-model="value2" label="Com valor" placeholder="Escolha..." :options="options" />
-        <Select v-model="value3" label="Desabilitado" placeholder="Escolha..." :options="options" disabled />
-      </div>
-    `
-  })
 }

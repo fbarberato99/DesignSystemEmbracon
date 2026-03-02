@@ -6,13 +6,93 @@ const meta: Meta<typeof UploadFiles> = {
   component: UploadFiles,
   tags: ['autodocs'],
   argTypes: {
+    label: {
+      control: 'text',
+      description: 'Texto exibido acima do campo de upload.',
+      table: {
+        type: { summary: 'String' },
+        defaultValue: { summary: '-' }
+      }
+    },
     titulo: {
       control: 'text',
-      description: 'Título do componente'
+      description: 'Nome/título do documento (usado nas mensagens e eventos).',
+      table: {
+        type: { summary: 'String' }
+      }
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Desabilita o upload.',
+      table: {
+        type: { summary: 'Boolean' },
+        defaultValue: { summary: 'false' }
+      }
+    },
+    fileCategory: {
+      control: 'text',
+      description: 'Categoria de arquivo (usado na lógica de upload, ex: backend).',
+      table: {
+        type: { summary: 'String' },
+        defaultValue: { summary: '-' }
+      }
+    },
+    accept: {
+      control: 'object',
+      description: 'Tipos MIME aceitos pelo upload.',
+      table: {
+        type: { summary: 'Array' },
+        defaultValue: { summary: 'jpeg, png, pdf' }
+      }
     },
     sizeLimit: {
       control: 'number',
-      description: 'Tamanho máximo em MB'
+      description: 'Tamanho máximo do arquivo em MB.',
+      table: {
+        type: { summary: 'Number' },
+        defaultValue: { summary: '8' }
+      }
+    },
+    wrongFileTypeMessage: {
+      control: 'text',
+      description: 'Mensagem customizada para tipo de arquivo inválido.',
+      table: {
+        type: { summary: 'String' },
+        defaultValue: { summary: '""' }
+      }
+    },
+    fullWidth: {
+      control: 'boolean',
+      description: 'Define se o componente ocupa 100% da largura disponível.',
+      table: {
+        type: { summary: 'Boolean' },
+        defaultValue: { summary: 'false' }
+      }
+    },
+    tooltiptext: {
+      control: 'boolean',
+      description: 'Texto do tooltip exibido em \'?\'',
+      table: {
+        type: { summary: 'Boolean' },
+        defaultValue: { summary: 'false' }
+      }
+    },
+    tooltipPosicao: {
+      control: 'select',
+      options: ['top', 'bottom', 'left', 'right'],
+      description: 'Posição do tooltip em relação ao ícone',
+      table: {
+        type: { summary: "'top' | 'bottom' | 'left' | 'right'" },
+        defaultValue: { summary: 'top' }
+      }
+    },
+    tooltipLargura: {
+      control: 'text',
+      description: 'Largura customizada do tooltip',
+      table: {
+        type: { summary: 'String' },
+        defaultValue: { summary: '200px' }
+      }
     }
   }
 }
@@ -24,65 +104,16 @@ export const Default: Story = {
   render: (args) => ({
     components: { UploadFiles },
     setup() {
-      return { args }
+      const handleInput = (file: any) => {
+        console.log('input event:', file)
+      }
+      return { args, handleInput }
     },
-    template: '<UploadFiles v-bind="args" />'
+    template: '<UploadFiles v-bind="args" @input="handleInput" />'
   }),
   args: {
     titulo: 'Enviar documentos',
-    accept: ['pdf', 'jpeg', 'png'],
-    sizeLimit: 5
+    accept: ['jpeg', 'png', 'pdf'],
+    sizeLimit: 8
   }
-}
-
-export const ImagesOnly: Story = {
-  render: (args) => ({
-    components: { UploadFiles },
-    setup() {
-      return { args }
-    },
-    template: '<UploadFiles v-bind="args" />'
-  }),
-  args: {
-    titulo: 'Enviar imagens',
-    accept: ['jpeg', 'png', 'jpg'],
-    sizeLimit: 10
-  }
-}
-
-export const PDFOnly: Story = {
-  render: (args) => ({
-    components: { UploadFiles },
-    setup() {
-      return { args }
-    },
-    template: '<UploadFiles v-bind="args" />'
-  }),
-  args: {
-    titulo: 'Enviar PDF',
-    accept: ['pdf'],
-    sizeLimit: 20
-  }
-}
-
-export const AllStates: Story = {
-  render: () => ({
-    components: { UploadFiles },
-    template: `
-      <div style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start;">
-        <div>
-          <h4 style="margin-bottom: 12px; font-size: 14px;">Estado Neutro</h4>
-          <UploadFiles titulo="Enviar documento" :accept="['pdf', 'jpeg', 'png']" :sizeLimit="5" />
-        </div>
-        <div>
-          <h4 style="margin-bottom: 12px; font-size: 14px;">Apenas Imagens</h4>
-          <UploadFiles titulo="Enviar foto" :accept="['jpeg', 'png']" :sizeLimit="10" />
-        </div>
-        <div>
-          <h4 style="margin-bottom: 12px; font-size: 14px;">Apenas PDF</h4>
-          <UploadFiles titulo="Enviar contrato" :accept="['pdf']" :sizeLimit="20" />
-        </div>
-      </div>
-    `
-  })
 }

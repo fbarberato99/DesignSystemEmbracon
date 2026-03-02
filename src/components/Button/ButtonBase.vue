@@ -43,9 +43,10 @@ const hasIconRight = computed(() => props.iconRight || slots['icon-right'])
     :disabled="props.disabled || props.loading"
     :class="buttonClasses"
     :aria-disabled="props.disabled || props.loading"
+    :aria-busy="props.loading"
     @click="handleClick"
   >
-    <span v-if="props.loading" class="btn__spinner" />
+    <span v-if="props.loading" class="btn__spinner" aria-hidden="true" />
     
     <!-- Ícone esquerdo via prop ou slot -->
     <template v-if="!props.loading">
@@ -54,12 +55,13 @@ const hasIconRight = computed(() => props.iconRight || slots['icon-right'])
         :name="props.iconLeft" 
         :size="props.iconSize" 
         class="btn__icon btn__icon--left"
+        aria-hidden="true"
       />
       <slot v-else name="icon-left" />
     </template>
     
     <!-- Conteúdo do botão -->
-    <span v-if="slots.default" class="btn__content">
+    <span v-if="slots.default" class="btn__content" :aria-hidden="props.loading">
       <slot />
     </span>
     
@@ -70,9 +72,13 @@ const hasIconRight = computed(() => props.iconRight || slots['icon-right'])
         :name="props.iconRight" 
         :size="props.iconSize"
         class="btn__icon btn__icon--right"
+        aria-hidden="true"
       />
       <slot v-else name="icon-right" />
     </template>
+    
+    <!-- Texto para leitores de tela quando loading -->
+    <span v-if="props.loading" class="sr-only">Carregando...</span>
   </button>
 </template>
 
@@ -278,5 +284,18 @@ const hasIconRight = computed(() => props.iconRight || slots['icon-right'])
   line-height: 0;
   width: auto;
   height: 18px;
+}
+
+/* ========== Screen Reader Only ========== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 </style>

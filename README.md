@@ -2,18 +2,31 @@
 
 Biblioteca de componentes Vue 3 com TypeScript para o Design System da Embracon.
 
+## 📚 Documentação
+
+- **[Storybook](https://seu-usuario.github.io/seu-repo/)** - Documentação interativa dos componentes
+- **[Guia de Deploy](./PUBLICAR_STORYBOOK.md)** - Como publicar o Storybook
+- **[Deploy Rápido](./DEPLOY_RAPIDO.md)** - Guia rápido de publicação
+- **[Acessibilidade](./RELATORIO_ACESSIBILIDADE.md)** - Relatório de conformidade WCAG
+
 ## 🎨 Visualizar Componentes
 
-Para visualizar todos os componentes em ação:
+### Storybook (Recomendado)
 
 ```bash
 npm install
+npm run storybook
+```
+
+Acesse `http://localhost:6006` para ver todos os componentes com documentação interativa.
+
+### Demo Page
+
+```bash
 npm run dev
 ```
 
 Acesse `http://localhost:5173` para ver a página de demonstração completa.
-
-Veja [DEMO.md](./DEMO.md) para mais detalhes sobre a visualização.
 
 ## 📦 Instalação
 

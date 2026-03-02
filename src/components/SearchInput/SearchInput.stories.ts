@@ -9,47 +9,43 @@ const meta: Meta<typeof SearchInput> = {
   argTypes: {
     value: {
       control: 'text',
-      description: 'Valor atual do campo de busca. Use v-model para binding bidirecional.',
+      description: 'Texto digitado, acessível via v-model ou evento \'input\'',
       table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '""' }
+        type: { summary: 'String' },
+        defaultValue: { summary: '-' }
       }
     },
     placeholder: {
       control: 'text',
-      description: 'Texto exibido quando o campo está vazio, indicando o que o usuário deve buscar.',
+      description: 'Nomeia o placeholder da barra',
       table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '"Pesquisar"' }
+        type: { summary: 'String' },
+        defaultValue: { summary: 'Pesquisar' }
       }
     },
     searchIcon: {
       control: 'text',
-      description: 'Nome do ícone de pesquisa exibido à esquerda (ex: "pesquisar", "lupa"). Aceita nomes em kebab-case.',
+      description: 'Nome do ícone de pesquisa exibido à esquerda',
       table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '"pesquisar"' }
+        type: { summary: 'String' },
+        defaultValue: { summary: 'pesquisar' }
       }
     },
     clearIcon: {
-      control: 'text',
-      description: 'Nome do ícone do botão limpar exibido à direita quando há texto (ex: "fechar", "x"). Aceita nomes em kebab-case.',
       table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '"fechar"' }
+        disable: true
       }
     },
     disabled: {
-      control: 'boolean',
-      description: 'Quando true, desabilita o campo impedindo digitação e interação. O componente fica com aparência esmaecida.',
       table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' }
+        disable: true
       }
     },
-    onInput: {
-      description: 'Evento disparado sempre que o usuário digita ou limpa o campo. Retorna o valor atual como string.',
+    // Eventos
+    input: {
+      description: 'Emitido ao digitar',
       table: {
+        category: 'Eventos',
         type: { summary: '(value: string) => void' }
       }
     }
@@ -66,57 +62,9 @@ export const Default: Story = {
       const value = ref('')
       return { args, value }
     },
-    template: '<div style="max-width: 400px;"><SearchInput v-bind="args" v-model="value" /></div>'
+    template: '<SearchInput v-bind="args" v-model="value" />'
   }),
   args: {
-    placeholder: 'Buscar...'
+    placeholder: 'Pesquisar'
   }
-}
-
-export const WithValue: Story = {
-  render: (args) => ({
-    components: { SearchInput },
-    setup() {
-      const value = ref('Consórcio')
-      return { args, value }
-    },
-    template: '<div style="max-width: 400px;"><SearchInput v-bind="args" v-model="value" /></div>'
-  }),
-  args: {
-    placeholder: 'Buscar...'
-  }
-}
-
-export const Disabled: Story = {
-  render: (args) => ({
-    components: { SearchInput },
-    setup() {
-      const value = ref('')
-      return { args, value }
-    },
-    template: '<div style="max-width: 400px;"><SearchInput v-bind="args" v-model="value" /></div>'
-  }),
-  args: {
-    placeholder: 'Busca desabilitada',
-    disabled: true
-  }
-}
-
-export const AllStates: Story = {
-  render: () => ({
-    components: { SearchInput },
-    setup() {
-      const value1 = ref('')
-      const value2 = ref('Termo de busca')
-      const value3 = ref('')
-      return { value1, value2, value3 }
-    },
-    template: `
-      <div style="max-width: 400px; display: flex; flex-direction: column; gap: 16px;">
-        <SearchInput v-model="value1" placeholder="Vazio" />
-        <SearchInput v-model="value2" placeholder="Com valor" />
-        <SearchInput v-model="value3" placeholder="Desabilitado" disabled />
-      </div>
-    `
-  })
 }

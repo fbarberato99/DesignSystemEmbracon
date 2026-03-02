@@ -79,6 +79,7 @@ const handleCloseKeydown = (event: KeyboardEvent) => {
         viewBox="0 0 11 11"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
       >
         <path
           d="M1.5 1.5L9.5 9.5M9.5 1.5L1.5 9.5"
@@ -116,7 +117,9 @@ const handleCloseKeydown = (event: KeyboardEvent) => {
 
 .chip--disabled {
   cursor: not-allowed;
-  background: var(--colors-gray-20);
+  background: var(--colors-gray-10);
+  border: 1px dashed var(--colors-gray-40);
+  pointer-events: none;
 }
 
 .chip:hover:not(.chip--disabled):not(.chip--selecionado):not(.chip--with-close) {
@@ -148,7 +151,8 @@ const handleCloseKeydown = (event: KeyboardEvent) => {
 }
 
 .chip--disabled .chip-texto {
-  color: var(--colors-gray-100);
+  color: var(--colors-gray-50);
+  text-decoration: line-through;
 }
 
 .chip-close {

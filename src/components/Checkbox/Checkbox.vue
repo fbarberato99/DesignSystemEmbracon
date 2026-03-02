@@ -47,6 +47,10 @@ const handleChange = (event: Event) => {
 
 const hasLabel = computed(() => props.label || props.subtitle)
 
+// IDs únicos para acessibilidade
+const checkboxId = computed(() => `checkbox-${Math.random().toString(36).substr(2, 9)}`)
+const subtitleId = computed(() => props.subtitle ? `${checkboxId.value}-subtitle` : undefined)
+
 </script>
 
 <template>
@@ -55,12 +59,14 @@ const hasLabel = computed(() => props.label || props.subtitle)
     :class="{ 'checkbox-wrapper--disabled': props.disabled }"
   >
     <input
+      :id="checkboxId"
       type="checkbox"
       class="checkbox-input"
       :checked="internalChecked"
       :disabled="props.disabled"
       :aria-checked="internalChecked"
       :aria-disabled="props.disabled"
+      :aria-describedby="subtitleId"
       @change="handleChange"
       @keydown.space.prevent="handleChange"
     />
@@ -82,6 +88,7 @@ const hasLabel = computed(() => props.label || props.subtitle)
         :height="props.size === '24px' ? 10 : props.size === '20px' ? 8 : 6" 
         viewBox="0 0 12 10" 
         fill="none"
+        aria-hidden="true"
       >
         <path 
           d="M1 5L4.5 8.5L11 1" 
@@ -93,8 +100,8 @@ const hasLabel = computed(() => props.label || props.subtitle)
       </svg>
     </span>
     <div v-if="hasLabel" class="checkbox-content">
-      <span v-if="props.label" class="checkbox-label">{{ props.label }}</span>
-      <span v-if="props.subtitle" class="checkbox-subtitle">{{ props.subtitle }}</span>
+      <label v-if="props.label" :for="checkboxId" class="checkbox-label">{{ props.label }}</label>
+      <span v-if="props.subtitle" :id="subtitleId" class="checkbox-subtitle">{{ props.subtitle }}</span>
     </div>
   </label>
 </template>

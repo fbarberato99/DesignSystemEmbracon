@@ -14,6 +14,7 @@ import './styles/border-radius.css'
 import './styles/shadows.css'
 import './styles/transitions.css'
 import './styles/z-index.css'
+import './styles/accessibility.css'
 
 // Importar componentes
 import Accordion from './components/Accordion/Accordion.vue'

@@ -1,5 +1,5 @@
 ﻿<script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, nextTick, onUnmounted } from 'vue'
 import Icon from '../Icon/Icon.vue'
 import type { SelectProps, SelectEmits } from './Select.types'
 
@@ -13,6 +13,7 @@ const props = withDefaults(defineProps<SelectProps>(), {
   caption: '',
   error: false,
   errorMessage: '',
+  fullWidth: false,
   options: () => []
 })
 
@@ -20,6 +21,13 @@ const emit = defineEmits<SelectEmits>()
 
 const isOpen = ref(false)
 const selectRef = ref<HTMLDivElement | null>(null)
+const dropdownWidth = ref<string>('auto')
+const activeIndex = ref(-1)
+
+// IDs únicos para acessibilidade
+const uniqueId = `select-${Math.random().toString(36).substr(2, 9)}`
+const labelId = `${uniqueId}-label`
+const dropdownId = `${uniqueId}-dropdown`
 
 const selectedOption = computed(() => {
   return props.options.find(opt => opt.value === props.modelValue)
@@ -29,9 +37,29 @@ const displayText = computed(() => {
   return selectedOption.value?.label || props.placeholder
 })
 
-const toggleDropdown = () => {
+const activeOptionId = computed(() => {
+  if (activeIndex.value >= 0 && activeIndex.value < props.options.length) {
+    return `${uniqueId}-option-${activeIndex.value}`
+  }
+  return undefined
+})
+
+const toggleDropdown = async () => {
   if (props.disabled) return
+  
+  // Captura a largura antes de abrir (apenas na primeira vez)
+  if (!isOpen.value && selectRef.value && dropdownWidth.value === 'auto') {
+    const width = selectRef.value.offsetWidth
+    dropdownWidth.value = `${width}px`
+  }
+  
   isOpen.value = !isOpen.value
+  
+  // Define índice ativo para opção selecionada ao abrir
+  if (isOpen.value) {
+    const selectedIndex = props.options.findIndex(opt => opt.value === props.modelValue)
+    activeIndex.value = selectedIndex >= 0 ? selectedIndex : 0
+  }
 }
 
 const selectOption = (value: string | number) => {
@@ -39,11 +67,60 @@ const selectOption = (value: string | number) => {
   emit('update:modelValue', value)
   emit('change', value)
   isOpen.value = false
+  activeIndex.value = -1
+}
+
+const navigateDown = () => {
+  if (!isOpen.value) {
+    toggleDropdown()
+    return
+  }
+  
+  let nextIndex = activeIndex.value + 1
+  while (nextIndex < props.options.length && props.options[nextIndex].disabled) {
+    nextIndex++
+  }
+  
+  if (nextIndex < props.options.length) {
+    activeIndex.value = nextIndex
+  }
+}
+
+const navigateUp = () => {
+  if (!isOpen.value) {
+    toggleDropdown()
+    return
+  }
+  
+  let prevIndex = activeIndex.value - 1
+  while (prevIndex >= 0 && props.options[prevIndex].disabled) {
+    prevIndex--
+  }
+  
+  if (prevIndex >= 0) {
+    activeIndex.value = prevIndex
+  }
+}
+
+const selectActive = () => {
+  if (isOpen.value && activeIndex.value >= 0 && activeIndex.value < props.options.length) {
+    const option = props.options[activeIndex.value]
+    if (!option.disabled) {
+      selectOption(option.value)
+    }
+  } else if (!isOpen.value) {
+    toggleDropdown()
+  }
+}
+
+const closeDropdown = () => {
+  isOpen.value = false
+  activeIndex.value = -1
 }
 
 const handleClickOutside = (event: MouseEvent) => {
   if (selectRef.value && !selectRef.value.contains(event.target as Node)) {
-    isOpen.value = false
+    closeDropdown()
   }
 }
 
@@ -53,22 +130,37 @@ if (typeof window !== 'undefined') {
 }
 
 // Remove listener ao desmontar
-import { onUnmounted } from 'vue'
 onUnmounted(() => {
   if (typeof window !== 'undefined') {
     document.removeEventListener('click', handleClickOutside)
   }
 })
-</script>
 
+// Captura largura inicial
+onMounted(() => {
+  if (selectRef.value) {
+    const width = selectRef.value.offsetWidth
+    dropdownWidth.value = `${width}px`
+  }
+})
+</script>
 <template>
-  <div class="select-wrapper">
+  <div class="select-wrapper" :class="{ 'select-wrapper--full-width': fullWidth }">
     <!-- Label -->
-    <label v-if="label" class="select-label">{{ label }}</label>
+    <label v-if="label" :id="labelId" class="select-label">{{ label }}</label>
 
     <!-- Select -->
     <div
       ref="selectRef"
+      role="combobox"
+      :aria-expanded="isOpen"
+      :aria-controls="dropdownId"
+      :aria-activedescendant="activeOptionId"
+      :aria-labelledby="label ? labelId : undefined"
+      :aria-label="!label ? placeholder : undefined"
+      :aria-disabled="disabled"
+      :aria-invalid="error"
+      tabindex="0"
       class="select"
       :class="{
         'select--sm': size === 'sm',
@@ -78,7 +170,13 @@ onUnmounted(() => {
         'select--open': isOpen,
         'select--has-value': modelValue !== undefined && modelValue !== null && modelValue !== ''
       }"
+      :style="{ width: dropdownWidth }"
       @click="toggleDropdown"
+      @keydown.down.prevent="navigateDown"
+      @keydown.up.prevent="navigateUp"
+      @keydown.enter.prevent="selectActive"
+      @keydown.space.prevent="selectActive"
+      @keydown.escape="closeDropdown"
     >
       <!-- Conteúdo do select -->
       <div class="select-content">
@@ -98,20 +196,33 @@ onUnmounted(() => {
 
       <!-- Dropdown -->
       <Transition name="dropdown">
-        <div v-if="isOpen" class="select-dropdown">
-          <div
-            v-for="option in options"
+        <ul 
+          v-if="isOpen" 
+          :id="dropdownId"
+          role="listbox"
+          :aria-labelledby="label ? labelId : undefined"
+          class="select-dropdown" 
+          :style="{ width: dropdownWidth }"
+        >
+          <li
+            v-for="(option, index) in options"
+            :id="`${uniqueId}-option-${index}`"
             :key="option.value"
+            role="option"
+            :aria-selected="option.value === modelValue"
+            :aria-disabled="option.disabled"
             class="select-option"
             :class="{
               'select-option--selected': option.value === modelValue,
-              'select-option--disabled': option.disabled
+              'select-option--disabled': option.disabled,
+              'select-option--active': index === activeIndex
             }"
             @click.stop="!option.disabled && selectOption(option.value)"
+            @mouseenter="activeIndex = index"
           >
             {{ option.label }}
-          </div>
-        </div>
+          </li>
+        </ul>
       </Transition>
     </div>
 
@@ -127,6 +238,7 @@ onUnmounted(() => {
   flex-direction: column;
   gap: var(--spacing-8);
   width: 100%;
+  position: relative;
 }
 
 /* Label */
@@ -232,7 +344,6 @@ onUnmounted(() => {
   position: absolute;
   top: calc(100% + 4px);
   left: 0;
-  right: 0;
   background: var(--colors-secondary-white);
   border: 1px solid var(--colors-gray-20);
   border-radius: var(--border-radius-sm);
@@ -240,6 +351,10 @@ onUnmounted(() => {
   max-height: 240px;
   overflow-y: auto;
   z-index: 100;
+  box-sizing: border-box;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 /* Opção */
@@ -254,7 +369,8 @@ onUnmounted(() => {
   transition: background-color 0.2s ease;
 }
 
-.select-option:hover:not(.select-option--disabled) {
+.select-option:hover:not(.select-option--disabled),
+.select-option--active:not(.select-option--disabled) {
   background: var(--colors-gray-10);
 }
 

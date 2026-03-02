@@ -7,13 +7,20 @@ withDefaults(defineProps<LoadingProps>(), {
 </script>
 
 <template>
-  <div class="loading" :style="{ width: `${size}px`, height: `${size}px` }">
+  <div 
+    class="loading" 
+    role="status" 
+    aria-live="polite"
+    aria-label="Carregando conteúdo"
+    :style="{ width: `${size}px`, height: `${size}px` }"
+  >
     <svg
       :width="size"
       :height="size"
       viewBox="0 0 48 48"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
     >
       <circle
         cx="24"
@@ -33,6 +40,7 @@ withDefaults(defineProps<LoadingProps>(), {
         </linearGradient>
       </defs>
     </svg>
+    <span class="sr-only">Carregando...</span>
   </div>
 </template>
 
@@ -55,5 +63,17 @@ withDefaults(defineProps<LoadingProps>(), {
   to {
     transform: rotate(360deg);
   }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 </style>

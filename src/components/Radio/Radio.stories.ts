@@ -9,15 +9,67 @@ const meta: Meta<typeof Radio> = {
   argTypes: {
     label: {
       control: 'text',
-      description: 'Texto principal'
+      description: 'Texto principal exibido do radio',
+      table: {
+        type: { summary: 'String' },
+        defaultValue: { summary: '""' }
+      }
     },
     subtitle: {
       control: 'text',
-      description: 'Texto secundário'
+      description: 'Texto secundário exibido abaixo do label',
+      table: {
+        type: { summary: 'String' },
+        defaultValue: { summary: '""' }
+      }
+    },
+    value: {
+      control: 'text',
+      description: 'Valor deste radio',
+      table: {
+        type: { summary: 'String | Number' },
+        defaultValue: { summary: 'null' }
+      }
+    },
+    modelValue: {
+      control: 'text',
+      description: 'Valor atual selecionado no grupo ( v-model )',
+      table: {
+        type: { summary: 'String | Number' },
+        defaultValue: { summary: 'null' }
+      }
+    },
+    size: {
+      control: 'select',
+      options: ['24px', '20px', '16px'],
+      description: 'Tamanho do radio button',
+      table: {
+        type: { summary: "'24px' | '20px' | '16px'" },
+        defaultValue: { summary: "'24px'" }
+      }
     },
     disabled: {
       control: 'boolean',
-      description: 'Estado desabilitado'
+      description: 'Estado desabilitado',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' }
+      }
+    },
+    // Eventos
+    'update:modelValue': {
+      description: 'Emitido ao selecionar o radio, retorna o value do item selecionado',
+      table: {
+        category: 'Eventos',
+        type: { summary: '(value: boolean) => void' }
+      }
+    },
+    input: {
+      description: 'Emitido ao selecionar o radio (modo não controlado)',
+      table: {
+        category: 'Eventos',
+        type: { summary: '(value: boolean) => void' }
+      }
     }
   }
 }
@@ -32,56 +84,10 @@ export const Default: Story = {
       const selected = ref(false)
       return { args, selected }
     },
-    template: '<div style="max-width: 400px;"><Radio v-bind="args" v-model="selected" /></div>'
+    template: '<Radio v-bind="args" v-model="selected" />'
   }),
   args: {
     label: 'Opção 1',
     subtitle: 'Descrição da opção'
   }
-}
-
-export const WithoutSubtitle: Story = {
-  render: (args) => ({
-    components: { Radio },
-    setup() {
-      const selected = ref(false)
-      return { args, selected }
-    },
-    template: '<div style="max-width: 400px;"><Radio v-bind="args" v-model="selected" /></div>'
-  }),
-  args: {
-    label: 'Opção 2'
-  }
-}
-
-export const Disabled: Story = {
-  render: (args) => ({
-    components: { Radio },
-    setup() {
-      const selected = ref(false)
-      return { args, selected }
-    },
-    template: '<div style="max-width: 400px;"><Radio v-bind="args" v-model="selected" /></div>'
-  }),
-  args: {
-    label: 'Opção desabilitada',
-    disabled: true
-  }
-}
-
-export const RadioGroup: Story = {
-  render: () => ({
-    components: { Radio },
-    setup() {
-      const selected = ref('option1')
-      return { selected }
-    },
-    template: `
-      <div style="max-width: 400px; display: flex; flex-direction: column; gap: 16px;">
-        <Radio label="Opção 1" subtitle="Primeira opção" :modelValue="selected === 'option1'" @update:modelValue="selected = 'option1'" />
-        <Radio label="Opção 2" subtitle="Segunda opção" :modelValue="selected === 'option2'" @update:modelValue="selected = 'option2'" />
-        <Radio label="Opção 3" subtitle="Terceira opção" :modelValue="selected === 'option3'" @update:modelValue="selected = 'option3'" />
-      </div>
-    `
-  })
 }

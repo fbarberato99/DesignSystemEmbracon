@@ -6,6 +6,7 @@ import '../src/styles/border-radius.css'
 import '../src/styles/shadows.css'
 import '../src/styles/transitions.css'
 import '../src/styles/z-index.css'
+import '../src/styles/accessibility.css'
 
 const preview: Preview = {
   parameters: {

@@ -16,6 +16,7 @@ export interface SelectProps {
   caption?: string
   error?: boolean
   errorMessage?: string
+  fullWidth?: boolean
 }
 
 export interface SelectEmits {

@@ -7,7 +7,8 @@ const props = withDefaults(defineProps<AttentionCardProps>(), {
   acao1: '',
   acao2: '',
   closeButton: false,
-  icon: 'informacao'
+  icon: 'informacao',
+  fullWidth: false
 })
 
 const emit = defineEmits<AttentionCardEmits>()
@@ -34,12 +35,13 @@ const handleAcao2 = () => {
     class="attention-card"
     :class="{
       'attention-card--with-actions': acao1 || acao2,
-      'attention-card--close-button': closeButton
+      'attention-card--close-button': closeButton,
+      'attention-card--full-width': fullWidth
     }"
   >
     <div class="attention-card-wrapper">
       <!-- Ícone -->
-      <div class="attention-card-icon">
+      <div class="attention-card-icon" aria-hidden="true">
         <Icon :name="props.icon" :size="18" color="#486DE8" />
       </div>
 
@@ -77,10 +79,10 @@ const handleAcao2 = () => {
         v-if="closeButton"
         type="button"
         class="attention-card-close"
-        aria-label="Fechar"
+        aria-label="Fechar card de atenção"
         @click="handleClose"
       >
-        <Icon name="fechar" :size="24" color="#CE181E" />
+        <Icon name="fechar" :size="24" color="#CE181E" aria-hidden="true" />
       </button>
     </div>
   </div>

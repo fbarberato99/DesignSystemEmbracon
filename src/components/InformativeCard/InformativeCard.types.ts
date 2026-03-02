@@ -43,4 +43,5 @@ export interface InformativeCardProps {
   texto?: string
   icon?: string
   iconColor?: IconColor
+  fullWidth?: boolean
 }
